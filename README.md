@@ -1,16 +1,38 @@
-# recycle
+# Recycling-Application
+Recycling application for CEN4910C Class
 
-A new Flutter project.
+Team Members
 
-## Getting Started
+Project Lead:
+Jayson Flores
 
-This project is a starting point for a Flutter application.
+Application Development:
+Jayson,
+Nate,
+Quinn,
+James,
+Rey,
+Chris,
+Jeremy,
+Abdielo
 
-A few resources to get you started if this is your first Flutter project:
+Web Development:
+Sophie,
+Mauricio,
+Jeremy,
+Abdielo,
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Testing
+Rey,
+Jayson
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Objective
+
+The goal of this project is to create an application for the city of Orlando to help residents determine if an item is recyclable.
+The application must employ the ability to scan a barcode and determine if the item is recyclable. The application must provide the 
+user the ability to be educated with resources that must align with city of Orlando’s commitment to keeper a cleaner city
+
+Motivation 
+
+To provide the ability for residents of Orlando an easier way to know where to recycle items. This ensures 
+that residents are committed to keeping the city or Orlando clean.
