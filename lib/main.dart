@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:recycle/scan.dart';
 
 //
 void main() {
-  runApp(const MyApp());
+  runApp(const StartPage());
 }
 
 //class
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class StartPage extends StatelessWidget {
+  const StartPage({super.key});
   static const color = Color(0xFFB6E8C6);
 
   // This widget is the root of your application.
@@ -87,12 +88,12 @@ class _MyHomePageState extends State<MyHomePage> {
               I used height to create "spacing" or "padding"
             */
             SizedBox(
-              height: 50,
+              height: 60,
               child: Column(
                 children: [
-                  const Text("Thank you for being part of our community!"),
+                  const Text("Thank you for being part of our community"),
                   const Text(
-                    "and your commitment to keeping our community clean",
+                    "and your commitment to keeping our community clean!",
                   ),
                 ],
               ),
@@ -115,17 +116,29 @@ class _MyHomePageState extends State<MyHomePage> {
             let's get started towards the middle
             */
             SizedBox(height: 100),
-            const Text(
+            //selectable text that allows user to interact or press
+            SelectableText(
               "Let's Get Started!",
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'AppleGothic',
               ),
+              onTap: () {
+                Navigator.of(context).push(_switchToScan());
+              },
             ),
           ],
         ),
       ),
     );
   }
+}
+
+// method switches to scan page
+Route _switchToScan() {
+  // returns Page Builder method that switches to scan page
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const ScanPage(),
+  );
 }
