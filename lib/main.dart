@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recycle/scan.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 //
 void main() {
@@ -116,18 +117,26 @@ class _MyHomePageState extends State<MyHomePage> {
             let's get started towards the middle
             */
             SizedBox(height: 100),
-            //selectable text that allows user to interact or press
-            SelectableText(
-              "Let's Get Started!",
-              style: const TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'AppleGothic',
+            SizedBox(
+              child: DefaultTextStyle(
+                style: const TextStyle(
+                  fontSize: 32.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'AppleGothic',
+                  color: Color.fromARGB(255, 0, 0, 0),
+                ),
+                child: AnimatedTextKit(
+                  animatedTexts: [FadeAnimatedText('Get Started!')],
+                  repeatForever: true,
+                  onTap: () {
+                    Navigator.of(context).push(_switchToScan());
+                  },
+                  controller: AnimatedTextController(),
+                ),
               ),
-              onTap: () {
-                Navigator.of(context).push(_switchToScan());
-              },
             ),
+
+            //animated text that when tapped it transitions to scan page
           ],
         ),
       ),
@@ -136,9 +145,18 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 // method switches to scan page
+
 Route _switchToScan() {
-  // returns Page Builder method that switches to scan page
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => const ScanPage(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(position: animation.drive(tween), child: child);
+    },
   );
 }
