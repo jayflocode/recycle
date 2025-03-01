@@ -49,7 +49,31 @@ class _MyHomePageState extends State<MyHomePage> {
      same color as the background we can can't tell the difference
      as a test, hover over the hex code and use another color. 
      */
-      body: Center(),
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            //padding to create room
+            SizedBox(height: 20),
+            Text("Scan item's UPC Code or QR Code"),
+            Text("to determine if your item is recycleable"),
+            //padding to create room
+            SizedBox(height: 100),
+            SizedBox(
+              height: 100,
+              width: 300,
+              // row to place two images side by side
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Image(image: AssetImage('assets/scan.png')),
+                  Image(image: AssetImage('assets/bar.png')),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

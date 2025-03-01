@@ -46,6 +46,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String mainFont = "AppleGothic";
+
   /* This is the Area of the Project where you set up the Structure of the
   app.
   */
@@ -75,12 +77,12 @@ class _MyHomePageState extends State<MyHomePage> {
  
             */
           children: [
-            const Text(
+            Text(
               "Recycling Assistant",
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
-                fontFamily: 'AppleGothic',
+                fontFamily: mainFont,
               ),
             ),
             /* In my opinion, the most useful tool is Sized Box
@@ -117,6 +119,12 @@ class _MyHomePageState extends State<MyHomePage> {
             let's get started towards the middle
             */
             SizedBox(height: 100),
+            /* The box below contains two children
+            for two reasons, we want to change the global text size of 
+            the components inside, and we cant' do this in the same child
+            but because its inside a sized box it changes it for everything in
+            the box
+            */
             SizedBox(
               child: DefaultTextStyle(
                 style: const TextStyle(
@@ -126,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Color.fromARGB(255, 0, 0, 0),
                 ),
                 child: AnimatedTextKit(
-                  animatedTexts: [FadeAnimatedText('Get Started!')],
+                  animatedTexts: [FadeAnimatedText('Get Started')],
                   repeatForever: true,
                   onTap: () {
                     Navigator.of(context).push(_switchToScan());
@@ -144,7 +152,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-// method switches to scan page
+/*
+Method below is used to transition to another page
+in this example the method _switchToscan is called to load the 
+class of ScanPage which is located in scan.dart
+for more information research the capabilities of PageRouteBuilder
+*/
 
 Route _switchToScan() {
   return PageRouteBuilder(
