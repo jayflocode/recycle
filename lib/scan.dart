@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+// import 'package:mobile_scanner/mobile_scanner.dart';
+// import 'package:pretty_qr_code/pretty_qr_code.dart';
 
-//
 void main() {
   runApp(const ScanPage());
 }

@@ -95,9 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 children: [
                   const Text("Thank you for being part of our community"),
-                  const Text(
-                    "and your commitment to keeping our community clean!",
-                  ),
+                  const Text("and commitment to keeping our community clean!"),
                 ],
               ),
             ),
