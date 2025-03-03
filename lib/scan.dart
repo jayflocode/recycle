@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:recycle/aluminum.dart';
+import 'package:recycle/not_found.dart';
 // import 'package:mobile_scanner/mobile_scanner.dart';
 // import 'package:pretty_qr_code/pretty_qr_code.dart';
 
@@ -75,6 +77,46 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+//nesting method to traverse across pages
+Route _switchPage(String page) {
+  // if product contains aluminum then this will route to aluminum page
+  if (page == "aluminum") {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => const Aluminum(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(0.0, 1.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        var tween = Tween(
+          begin: begin,
+          end: end,
+        ).chain(CurveTween(curve: curve));
+
+        return SlideTransition(position: animation.drive(tween), child: child);
+      },
+    );
+  } else {
+    // if UPC is not found
+
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => const Notfound(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(0.0, 1.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        var tween = Tween(
+          begin: begin,
+          end: end,
+        ).chain(CurveTween(curve: curve));
+
+        return SlideTransition(position: animation.drive(tween), child: child);
+      },
     );
   }
 }

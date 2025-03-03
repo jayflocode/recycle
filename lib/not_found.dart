@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const Aluminum());
+  runApp(const Notfound());
 }
 
 //class
-class Aluminum extends StatelessWidget {
-  const Aluminum({super.key});
+class Notfound extends StatelessWidget {
+  const Notfound({super.key});
   //color of background
   static const color = Color(0xFFB6E8C6);
 

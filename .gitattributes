@@ -17,4 +17,8 @@
 *..properties linguist-detectable=false
 *.xc* linguist-detectable=false
 Podfile linguist-detectable=false
+<<<<<<< HEAD
 CMakeLists.txt linguist-detectable=false
+=======
+CMakeLists.txt linguist-detectable=false
+>>>>>>> f90a624 (updated scan page, aluminum page, and not found page)
