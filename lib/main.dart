@@ -16,6 +16,9 @@ class StartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      /*this value appears to only be used in Android
+       learn more by using your ide's info overlay
+       */
       title: 'Recycling Application',
       theme: ThemeData(
         //sets the background color of the scene completely

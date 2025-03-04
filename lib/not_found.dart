@@ -35,9 +35,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  /* This is the Area of the Project where you set up the Structure of the
-  app.
-  */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,10 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Color(0xFFB6E8C6),
         title: Text(widget.title),
       ),
-      /*there is an app bar that acts as a divider but because we set up the
-     same color as the background we can can't tell the difference
-     as a test, hover over the hex code and use another color. 
-     */
       body: Center(),
     );
   }
