@@ -42,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   app.
   */
 
+  // search data method is used to check the upc code against database
   Future searchData(var code) async {
     var urlWeb = Uri.parse('https://recycling.x10.mx/get.php');
 
@@ -55,11 +56,16 @@ class _MyHomePageState extends State<MyHomePage> {
     ); //awaits response
 
     // data = data.toString();  // json data converted into string
+    // stored in a dynamic list
     dynamic stringList = json.decode(response.body);
 
     String storedCode = stringList[0].toString();
 
-    print(storedCode);
+    if (storedCode.isNotEmpty) {
+      debugPrint(storedCode);
+    } else {
+      debugPrint("No data returned from datagbase");
+    }
   }
 
   @override
