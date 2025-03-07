@@ -25,13 +25,13 @@ class StartPage extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFB6E8C6),
       ),
       //homepage text
-      home: const MyHomePage(title: 'City of Orlando'),
+      home: const MainPage(title: 'City of Orlando'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class MainPage extends StatefulWidget {
+  const MainPage({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -45,10 +45,10 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MainPageState extends State<MainPage> {
   String mainFont = "AppleGothic";
 
   /* This is the Area of the Project where you set up the Structure of the

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:http/http.dart' as http;
+import 'package:recycle/aluminum.dart';
 import 'package:recycle/not_found.dart';
 import 'dart:convert';
+
+import 'package:recycle/plastic.dart';
 
 void main() {
   runApp(const ScanPage());
@@ -23,21 +26,21 @@ class ScanPage extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFB6E8C6),
       ),
       //homepage text
-      home: const MyHomePage(title: 'Scan your Product'),
+      home: const ScanHomePage(title: 'Scan your Product'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class ScanHomePage extends StatefulWidget {
+  const ScanHomePage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<ScanHomePage> createState() => _ScanHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _ScanHomePageState extends State<ScanHomePage> {
   /* This is the Area of the Project where you set up the Structure of the
   app.
   */
@@ -46,7 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Future searchData(var code) async {
     var urlWeb = Uri.parse('https://recycling.x10.mx/get.php');
 
-    code = "2334552343";
+    code = code.toString().replaceAll("-", "");
+
+    debugPrint("Removed Dashes: $code");
 
     //php file storing get command
 
@@ -57,14 +62,24 @@ class _MyHomePageState extends State<MyHomePage> {
 
     // data = data.toString();  // json data converted into string
     // stored in a dynamic list
+
     dynamic stringList = json.decode(response.body);
 
     String storedCode = stringList[0].toString();
 
-    if (storedCode.isNotEmpty) {
-      debugPrint(storedCode);
+    debugPrint("Code is: $storedCode");
+
+    changePage(storedCode);
+  }
+
+  changePage(String code) {
+    if (code.contains("aluminum")) {
+      Navigator.of(context).push(_switchToAluminum());
+    }
+    if (code.contains("plastic")) {
+      Navigator.of(context).push(_switchToPlastic());
     } else {
-      debugPrint("No data returned from datagbase");
+      Navigator.of(context).push(_switchToNotFound());
     }
   }
 
@@ -141,8 +156,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   // note this is imcomplete code used to reroute to method to
                   stop debugging in console after scan. It will be isolated to
                   its own method later */
-
-                  Navigator.of(context).push(_switchToScan(code));
                 },
               ),
             ),
@@ -155,9 +168,40 @@ class _MyHomePageState extends State<MyHomePage> {
 
 //nesting method to traverse across pages
 // imcomplete for now will revisit after completing other methods
-Route _switchToScan(var code) {
+
+Route _switchToAluminum() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const Aluminum(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(position: animation.drive(tween), child: child);
+    },
+  );
+}
+
+Route _switchToNotFound() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => const Notfound(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(position: animation.drive(tween), child: child);
+    },
+  );
+}
+
+Route _switchToPlastic() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const Plastic(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;

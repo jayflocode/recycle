@@ -20,7 +20,7 @@ class Notfound extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFB6E8C6),
       ),
       //homepage text
-      home: const MyHomePage(title: 'no title'),
+      home: const MyHomePage(title: 'Not Found'),
     );
   }
 }
