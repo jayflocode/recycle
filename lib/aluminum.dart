@@ -78,7 +78,7 @@ class _ScanHomePageState extends State<ScanHomePage> {
                 text: TextSpan(
                   text:
                       '   In 2018, 3.9 million of aluminum'
-                      'municipal solid\n\nwaste was generated,'
+                      ' municipal solid\n\nwaste was generated,'
                       'The total recycling rate for\n\naluminum items'
                       'was 34.9 percent. Both aluminum\n\ncans and'
                       'foil can be recycled.',
