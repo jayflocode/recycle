@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:recycle/scan.dart';
+
+final String mainFont = "AppleGothic";
 
 void main() {
   runApp(const Aluminum());
@@ -16,25 +19,30 @@ class Aluminum extends StatelessWidget {
     return MaterialApp(
       title: 'no title',
       theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
+        ),
         //sets the background color of the scene completely
         scaffoldBackgroundColor: const Color(0xFFB6E8C6),
+        fontFamily: mainFont,
+        //sets the background color of the scene completely
       ),
       //homepage text
-      home: const ScanHomePage(title: 'Aluminum'),
+      home: const AluminumPage(title: 'Aluminum'),
     );
   }
 }
 
-class ScanHomePage extends StatefulWidget {
-  const ScanHomePage({super.key, required this.title});
+class AluminumPage extends StatefulWidget {
+  const AluminumPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<ScanHomePage> createState() => _ScanHomePageState();
+  State<AluminumPage> createState() => _AluminumPageState();
 }
 
-class _ScanHomePageState extends State<ScanHomePage> {
+class _AluminumPageState extends State<AluminumPage> {
   String mainFont = "AppleGothic";
   /* This is the Area of the Project where you set up the Structure of the
   app.
@@ -73,12 +81,11 @@ class _ScanHomePageState extends State<ScanHomePage> {
             ),
             SizedBox(height: 50),
             SizedBox(
-              width: 350,
               child: RichText(
                 text: TextSpan(
                   text:
                       '   In 2018, 3.9 million of aluminum'
-                      ' municipal solid\n\nwaste was generated,'
+                      'municipal solid\n\nwaste was generated,'
                       'The total recycling rate for\n\naluminum items'
                       'was 34.9 percent. Both aluminum\n\ncans and'
                       'foil can be recycled.',
@@ -91,9 +98,36 @@ class _ScanHomePageState extends State<ScanHomePage> {
                 ),
               ),
             ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              style: const ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll<Color>(
+                  Color.fromARGB(255, 169, 240, 191),
+                ),
+              ),
+              child: const Text('Return to Scan another Item'),
+              onPressed: () {
+                Navigator.of(context).push(_switchToScan());
+              },
+            ),
           ],
         ),
       ),
     );
   }
+}
+
+Route _switchToScan() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const ScanPage(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(position: animation.drive(tween), child: child);
+    },
+  );
 }

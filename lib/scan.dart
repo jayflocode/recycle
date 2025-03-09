@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:http/http.dart' as http;
 import 'package:recycle/aluminum.dart';
+import 'package:recycle/batteries.dart';
 import 'package:recycle/not_found.dart';
 import 'dart:convert';
 
@@ -41,12 +42,31 @@ class ScanHomePage extends StatefulWidget {
 }
 
 class _ScanHomePageState extends State<ScanHomePage> {
+  late MobileScannerController _scannerController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scannerController = MobileScannerController(
+      detectionSpeed: DetectionSpeed.noDuplicates,
+    );
+  }
+
+  @override
+  void dispose() {
+    _scannerController.dispose();
+    super.dispose();
+  }
   /* This is the Area of the Project where you set up the Structure of the
   app.
   */
 
   // search data method is used to check the upc code against database
   Future searchData(var code) async {
+    if (code.contains(RegExp("a-zA-Z"))) {
+      debugPrint("letters Detected");
+      code = "0";
+    }
     var urlWeb = Uri.parse('https://recycling.x10.mx/get.php');
 
     code = code.toString().replaceAll("-", "");
@@ -65,18 +85,32 @@ class _ScanHomePageState extends State<ScanHomePage> {
 
     dynamic stringList = json.decode(response.body);
 
-    String storedCode = stringList[0].toString();
+    List<String> queryList = [];
 
-    debugPrint("Code is: $storedCode");
+    for (int i = 0; i < stringList.length; i++) {
+      queryList.add(stringList[i].toString());
+    }
+    if (queryList.isEmpty) {
+      debugPrint("list is empty");
+      changePage('');
+    } else {
+      code = queryList[0].toString();
+      print(code);
+      String upc = code;
+      changePage(upc);
+    }
 
-    changePage(storedCode);
+    // method passes stored material
   }
 
-  changePage(String code) {
-    if (code.contains("aluminum")) {
+  Future changePage(String material) async {
+    print("Change Method: $material");
+
+    if (material.contains("aluminum")) {
       Navigator.of(context).push(_switchToAluminum());
-    }
-    if (code.contains("plastic")) {
+    } else if (material.contains("batteries}")) {
+      Navigator.of(context).push(_switchToBattery());
+    } else if (material.contains("plastic")) {
       Navigator.of(context).push(_switchToPlastic());
     } else {
       Navigator.of(context).push(_switchToNotFound());
@@ -133,22 +167,25 @@ class _ScanHomePageState extends State<ScanHomePage> {
               height: 200,
               width: 320,
               child: MobileScanner(
-                controller: MobileScannerController(
-                  detectionSpeed: DetectionSpeed.noDuplicates,
-                  returnImage: true,
-                ),
-
-                //scanner gathers information
-                onDetect: (capture) {
+                controller: _scannerController,
+                onDetect: (barcodes) async {
                   // list is created to store value
-                  final List<Barcode> barcodes = capture.barcodes;
-                  var code = barcodes[0].rawValue;
+                  final List<Barcode> barCodesCaptured = barcodes.barcodes;
+                  String? data;
+                  for (final barCode in barCodesCaptured) {
+                    if (barCode.rawValue != null) {
+                      data = barCode.rawValue;
+                    }
+                  }
                   // value is printed
-                  debugPrint("Value from scan is $code");
+                  debugPrint("Value from scan is $data");
 
                   // insert method to look up code in database
 
-                  searchData(code);
+                  if (data != null) {
+                    _scannerController.stop();
+                    searchData(data);
+                  }
 
                   // method returns material
 
@@ -184,9 +221,9 @@ Route _switchToAluminum() {
   );
 }
 
-Route _switchToNotFound() {
+Route _switchToPlastic() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const Notfound(),
+    pageBuilder: (context, animation, secondaryAnimation) => const Plastic(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;
@@ -199,9 +236,24 @@ Route _switchToNotFound() {
   );
 }
 
-Route _switchToPlastic() {
+Route _switchToBattery() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const Plastic(),
+    pageBuilder: (context, animation, secondaryAnimation) => const Battery(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(position: animation.drive(tween), child: child);
+    },
+  );
+}
+
+Route _switchToNotFound() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const Notfound(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;

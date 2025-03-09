@@ -17,7 +17,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp(this.greetingController, {Key? key}) : super(key: key);
+  const MyApp(this.greetingController, {super.key});
 
   final GreetingController greetingController;
 
