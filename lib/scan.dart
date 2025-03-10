@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:recycle/aluminum.dart';
 import 'package:recycle/batteries.dart';
 import 'package:recycle/not_found.dart';
+import 'package:recycle/invalid.dart';
 import 'dart:convert';
 
 import 'package:recycle/plastic.dart';
@@ -63,49 +64,54 @@ class _ScanHomePageState extends State<ScanHomePage> {
 
   // search data method is used to check the upc code against database
   Future searchData(var code) async {
-    if (code.contains(RegExp("a-zA-Z"))) {
-      debugPrint("letters Detected");
-      code = "0";
-    }
-    var urlWeb = Uri.parse('https://recycling.x10.mx/get.php');
-
+    // removes dashes from barcode since barcodes are stored without them in DB
     code = code.toString().replaceAll("-", "");
 
-    debugPrint("Removed Dashes: $code");
+    // checks if barcode is only numbers
+    if (code.contains(RegExp(r'^[0-9]+$'))) {
+      debugPrint("Only numbers Detected");
+      /*flutter requires http package to fetch data from the internet
+    data is fetch using php
+    */
+      var urlWeb = Uri.parse('https://recycling.x10.mx/get.php');
 
-    //php file storing get command
+      //php file storing get command
 
-    final response = await http.post(
-      urlWeb,
-      body: {"code": code},
-    ); //awaits response
+      final response = await http.post(
+        urlWeb,
+        body: {"code": code},
+      ); //awaits response
 
-    // data = data.toString();  // json data converted into string
-    // stored in a dynamic list
+      // json body response which is stored as "dynamic" data type
+      //FYI: Source has info on data types https://treeindev.net/article/dart-data-types
+      //dynamic is used for json type data, other reasons var is desired
+      dynamic stringList = json.decode(response.body);
 
-    dynamic stringList = json.decode(response.body);
+      // a list is created to access internal methods from List class
+      List<String> queryList = [];
 
-    List<String> queryList = [];
-
-    for (int i = 0; i < stringList.length; i++) {
-      queryList.add(stringList[i].toString());
-    }
-    if (queryList.isEmpty) {
-      debugPrint("list is empty");
-      changePage('');
+      for (int i = 0; i < stringList.length; i++) {
+        queryList.add(stringList[i].toString());
+      }
+      // if query list is empty it means code is not valid
+      if (queryList.isEmpty) {
+        debugPrint("list is empty");
+        changePage(code);
+      } else if (queryList.isNotEmpty) {
+        code = queryList[0];
+        debugPrint("Query: $code");
+        changePage(code);
+      }
     } else {
-      code = queryList[0].toString();
-      print(code);
-      String upc = code;
-      changePage(upc);
+      debugPrint("Invalid Code: $code");
+      // switch to different page later
+      Navigator.of(context).push(_switchToInvalid());
     }
-
-    // method passes stored material
   }
 
-  Future changePage(String material) async {
-    print("Change Method: $material");
+  // change page is a method used to switch to the page
 
+  Future changePage(String material) async {
     if (material.contains("aluminum")) {
       Navigator.of(context).push(_switchToAluminum());
     } else if (material.contains("batteries}")) {
@@ -113,6 +119,8 @@ class _ScanHomePageState extends State<ScanHomePage> {
     } else if (material.contains("plastic")) {
       Navigator.of(context).push(_switchToPlastic());
     } else {
+      upcCode = material;
+      debugPrint("Upc Code: $material");
       Navigator.of(context).push(_switchToNotFound());
     }
   }
@@ -254,6 +262,21 @@ Route _switchToBattery() {
 Route _switchToNotFound() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => const Notfound(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(position: animation.drive(tween), child: child);
+    },
+  );
+}
+
+Route _switchToInvalid() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const Invalid(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;
