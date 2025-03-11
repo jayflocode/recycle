@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 // this is a sample template of a properly formatted page
+// that I created to start.
 
 // state class with upper case, ex. Sample
 void main() {
