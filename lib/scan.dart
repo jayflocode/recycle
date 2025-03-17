@@ -2,9 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:http/http.dart' as http;
 import 'package:recycle/aluminum.dart';
+import 'package:recycle/batteries.dart';
+import 'package:recycle/electronics.dart';
+import 'package:recycle/glass.dart';
+import 'package:recycle/hazardous.dart';
 import 'package:recycle/not_found.dart';
 import 'package:recycle/invalid.dart';
+import 'package:recycle/oil.dart';
+
 import 'dart:convert';
+
+import 'package:recycle/plastic.dart';
 
 void main() {
   runApp(const ScanPage());
@@ -109,14 +117,29 @@ class _ScanHomePageState extends State<ScanHomePage> {
   // change page is a method used to switch to the page
 
   Future changePage(String material) async {
+    //conditional statements after scan to determine material
+
     if (material.contains("aluminum")) {
       Navigator.of(context).push(_switchToAluminum());
     } else if (material.contains("batteries}")) {
-      /* Navigator.of(context).push(_switchToBattery()); */
+      Navigator.of(context).push(_switchToBattery());
     } else if (material.contains("plastic")) {
-      /*
-      Navigator.of(context).push(_switchToPlastic()); */
-    } else {
+      Navigator.of(context).push(_switchToPlastic());
+    } else if (material.contains("lawn")) {
+      Navigator.of(context).push(_switchToPlastic());
+    } else if (material.contains("plastic")) {
+      Navigator.of(context).push(_switchToPlastic());
+    } else if (material.contains("hazardous")) {
+      Navigator.of(context).push(_switchToHazardous());
+    } else if (material.contains("oil")) {
+      Navigator.of(context).push(_switchToOil());
+    } else if (material.contains("electronics")) {
+      Navigator.of(context).push(_switchToElectronics());
+    } else if (material.contains("glass")) {
+      Navigator.of(context).push(_switchToGlass());
+    }
+    // when database has not found the material or does not exist
+    else {
       upcCode = material;
       debugPrint("Upc Code: $material");
       Navigator.of(context).push(_switchToNotFound());
@@ -227,7 +250,6 @@ Route _switchToAluminum() {
   );
 }
 
-/* ommitted 
 Route _switchToPlastic() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => const Plastic(),
@@ -243,6 +265,37 @@ Route _switchToPlastic() {
   );
 }
 
+Route _switchToOil() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const Oil(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(position: animation.drive(tween), child: child);
+    },
+  );
+}
+
+Route _switchToHazardous() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const Hazardous(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(position: animation.drive(tween), child: child);
+    },
+  );
+}
+
+//not complete
 
 Route _switchToBattery() {
   return PageRouteBuilder(
@@ -258,7 +311,37 @@ Route _switchToBattery() {
     },
   );
 }
-*/
+
+Route _switchToGlass() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const Glass(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(position: animation.drive(tween), child: child);
+    },
+  );
+}
+
+Route _switchToElectronics() {
+  return PageRouteBuilder(
+    pageBuilder:
+        (context, animation, secondaryAnimation) => const Electronics(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(position: animation.drive(tween), child: child);
+    },
+  );
+}
 
 Route _switchToNotFound() {
   return PageRouteBuilder(
