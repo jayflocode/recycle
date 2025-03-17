@@ -6,6 +6,7 @@ import 'package:recycle/batteries.dart';
 import 'package:recycle/electronics.dart';
 import 'package:recycle/glass.dart';
 import 'package:recycle/hazardous.dart';
+import 'package:recycle/lawn.dart';
 import 'package:recycle/not_found.dart';
 import 'package:recycle/invalid.dart';
 import 'package:recycle/oil.dart';
@@ -316,7 +317,7 @@ Route _switchToBattery() {
 
 Route _switchToLawn() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const Battery(),
+    pageBuilder: (context, animation, secondaryAnimation) => const Lawn(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;

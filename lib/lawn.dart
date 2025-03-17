@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:recycle/scan.dart';
-import 'package:url_launcher/url_launcher.dart';
+
+//replace Lawn with Class Type, ex. Lawn w/ Oil, etc
+
+final String mainFont = "AppleGothic";
+
 void main() {
   runApp(const Lawn());
 }
@@ -11,38 +15,41 @@ class Lawn extends StatelessWidget {
   //color of background
   static const color = Color(0xFFB6E8C6);
 
-
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'no title',
+      title: '',
       theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
+        ),
         //sets the background color of the scene completely
         scaffoldBackgroundColor: const Color(0xFFB6E8C6),
+        fontFamily: mainFont,
       ),
-    
-      home: const MyHomePageHomePage(title: 'Aluminum'),
+      //homepage text
+      home: const LawnPage(title: 'Lawn'),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
+class LawnPage extends StatefulWidget {
+  const LawnPage({super.key, required this.title});
+
   final String title;
 
   @override
-  State<ScanHomePage> createState() => _ScanHomePageState();
+  State<LawnPage> createState() => _LawnPageState();
 }
 
-class _ScanHomePageState extends State<ScanHomePage> {
-  String mainFont = "AppleGothic";
+class _LawnPageState extends State<LawnPage> {
   /* This is the Area of the Project where you set up the Structure of the
   app.
   */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-   
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,7 +58,7 @@ class _ScanHomePageState extends State<ScanHomePage> {
             SizedBox(
               width: 75.0,
               height: 150.0,
-  
+
               child: Image(image: AssetImage('assets/recycling.png')),
             ),
             SizedBox(),
@@ -72,7 +79,7 @@ class _ScanHomePageState extends State<ScanHomePage> {
               child: RichText(
                 text: TextSpan(
                   text:
-                  '   In 2018, 35.4 million tons of yard'
+                      '   In 2018, 35.4 million tons of yard'
                       'trimmings were generated. Lawn materials'
                       'cannot be recycled, but they can be'
                       'composted. If you are unable to compost,'
