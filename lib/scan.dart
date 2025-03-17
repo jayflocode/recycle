@@ -375,6 +375,7 @@ Route _switchToNotFound() {
   );
 }
 
+// switches to another page if the code scanned is invalid
 Route _switchToInvalid() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => const Invalid(),
