@@ -126,7 +126,7 @@ class _ScanHomePageState extends State<ScanHomePage> {
     } else if (material.contains("plastic")) {
       Navigator.of(context).push(_switchToPlastic());
     } else if (material.contains("lawn")) {
-      Navigator.of(context).push(_switchToPlastic());
+      Navigator.of(context).push(_switchToLawn());
     } else if (material.contains("plastic")) {
       Navigator.of(context).push(_switchToPlastic());
     } else if (material.contains("hazardous")) {
@@ -298,6 +298,23 @@ Route _switchToHazardous() {
 //not complete
 
 Route _switchToBattery() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const Battery(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(position: animation.drive(tween), child: child);
+    },
+  );
+}
+
+// work in progress
+
+Route _switchToLawn() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => const Battery(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
