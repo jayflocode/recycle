@@ -209,7 +209,7 @@ class _ScanHomePageState extends State<ScanHomePage> {
                   // value is printed
                   debugPrint("Value from scan is $data");
 
-                  // insert method to look up code in database
+                  // insert method to look up code in database --
 
                   if (data != null) {
                     _scannerController.stop();
