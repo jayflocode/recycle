@@ -17,14 +17,14 @@ class Plastic extends StatelessWidget {
     return MaterialApp(
       title: 'Plastic Recycling',
       theme: ThemeData(scaffoldBackgroundColor: Color(0xFFB6E8C6)),
-      home: const MyHomePage(title: 'Plastic'),
+      home: const PlasticPage(title: 'Plastic'),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class PlasticPage extends StatelessWidget {
   final String title;
-  const MyHomePage({super.key, required this.title});
+  const PlasticPage({super.key, required this.title});
 
   @override
   //This contains the logo of the recycling app

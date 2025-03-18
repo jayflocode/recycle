@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:http/http.dart' as http;
 import 'package:recycle/aluminum.dart';
+import 'package:recycle/batteries.dart';
 import 'package:recycle/not_found.dart';
 import 'package:recycle/invalid.dart';
 import 'dart:convert';
+
+import 'package:recycle/plastic.dart';
 
 void main() {
   runApp(const ScanPage());
@@ -112,10 +115,10 @@ class _ScanHomePageState extends State<ScanHomePage> {
     if (material.contains("aluminum")) {
       Navigator.of(context).push(_switchToAluminum());
     } else if (material.contains("batteries}")) {
-      /* Navigator.of(context).push(_switchToBattery()); */
+       Navigator.of(context).push(_switchToBattery()); 
     } else if (material.contains("plastic")) {
-      /*
-      Navigator.of(context).push(_switchToPlastic()); */
+      
+      Navigator.of(context).push(_switchToPlastic()); 
     } else {
       upcCode = material;
       debugPrint("Upc Code: $material");
@@ -227,7 +230,7 @@ Route _switchToAluminum() {
   );
 }
 
-/* ommitted 
+
 Route _switchToPlastic() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => const Plastic(),
@@ -258,7 +261,7 @@ Route _switchToBattery() {
     },
   );
 }
-*/
+
 
 Route _switchToNotFound() {
   return PageRouteBuilder(
