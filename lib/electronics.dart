@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:recycle/scan.dart';
 
-// attn this page is not finished
 
 final String mainFont = "AppleGothic";
 
 void main() {
-  runApp(const Electronics());
+  runApp(const Battery());
 }
 
 //class
-class Electronics extends StatelessWidget {
-  const Electronics({super.key});
+class Electronic extends StatelessWidget {
+  const Electronic({super.key});
+// attn this page is not finished
+
   //color of background
   static const color = Color(0xFFB6E8C6);
 
@@ -29,21 +30,25 @@ class Electronics extends StatelessWidget {
         fontFamily: mainFont,
       ),
       //homepage text
-      home: const ElectronicsPage(title: 'Electronics'),
+
+      home: const ElectronicPage(title: 'Electronic'),
     );
   }
 }
 
-class ElectronicsPage extends StatefulWidget {
-  const ElectronicsPage({super.key, required this.title});
+class ElectronicPage extends StatefulWidget {
+  const ElectronicPage({super.key, required this.title});
+
 
   final String title;
 
   @override
+
   State<ElectronicsPage> createState() => _ElectronicsPageState();
 }
 
 class _ElectronicsPageState extends State<ElectronicsPage> {
+
   /* This is the Area of the Project where you set up the Structure of the
   app.
   */
@@ -52,9 +57,8 @@ class _ElectronicsPageState extends State<ElectronicsPage> {
     return Scaffold(
       /*there is an app bar that acts as a divider but because we set up the
      same color as the background we can can't tell the difference
-     as a test, hover over the hex code and use another color. 
-     */
-      body: Center(
+
+body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -70,7 +74,9 @@ class _ElectronicsPageState extends State<ElectronicsPage> {
             SizedBox(),
             RichText(
               text: TextSpan(
+
                 text: 'This item contains Batteries',
+
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -125,3 +131,4 @@ Route _switchToScan() {
     },
   );
 }
+
