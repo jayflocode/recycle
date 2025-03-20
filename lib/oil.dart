@@ -40,7 +40,7 @@ class OilPage extends StatelessWidget {
 
             // Main text
             Text(
-              "The item you scanned contains oil-based products",
+              "The item you scanned contains used oil products",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 24,

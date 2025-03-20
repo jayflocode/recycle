@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recycle/scan.dart';
 
-// attn this page is not finished
-
 final String mainFont = "AppleGothic";
 
 void main() {
@@ -83,7 +81,17 @@ class _BatteryPageState extends State<BatteryPage> {
             SizedBox(
               child: RichText(
                 text: TextSpan(
-                  text: "",
+                  text:
+                      " Lead-acid batteries are one of the most\n\n"
+                      "recycled products. In 2018, 2.9 million were\n\n"
+                      "recycled, representing 99 percent of generation.\n\n"
+                      "Recycling rates of other battery types are not\n\n"
+                      "as well tracked. Although batteries are recyclable\n\n"
+                      "most batteries, including lithium-ion, lithium metal,\n\n"
+                      "lead-acid, nickel cadmium, and other rechargeable\n\n"
+                      "batteries, should NOT go in household garbage or\n\n"
+                      "or recycling bins. These items should be taken to\n\n"
+                      "special locations in your area.",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
@@ -91,8 +99,10 @@ class _BatteryPageState extends State<BatteryPage> {
                     fontFamily: mainFont,
                   ),
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
+            SizedBox(height: 20),
             ElevatedButton(
               style: const ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll<Color>(
