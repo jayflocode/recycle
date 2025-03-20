@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recycle/scan.dart';
 
+
 final String mainFont = "AppleGothic";
 
 void main() {
@@ -10,6 +11,8 @@ void main() {
 //class
 class Electronic extends StatelessWidget {
   const Electronic({super.key});
+// attn this page is not finished
+
   //color of background
   static const color = Color(0xFFB6E8C6);
 
@@ -27,6 +30,7 @@ class Electronic extends StatelessWidget {
         fontFamily: mainFont,
       ),
       //homepage text
+
       home: const ElectronicPage(title: 'Electronic'),
     );
   }
@@ -35,13 +39,16 @@ class Electronic extends StatelessWidget {
 class ElectronicPage extends StatefulWidget {
   const ElectronicPage({super.key, required this.title});
 
+
   final String title;
 
   @override
-  State<ElectronicPage> createState() => _ElectronicPageState();
+
+  State<ElectronicsPage> createState() => _ElectronicsPageState();
 }
 
-class _ElectronicPageState extends State<ElectronicPage> {
+class _ElectronicsPageState extends State<ElectronicsPage> {
+
   /* This is the Area of the Project where you set up the Structure of the
   app.
   */
@@ -50,9 +57,8 @@ class _ElectronicPageState extends State<ElectronicPage> {
     return Scaffold(
       /*there is an app bar that acts as a divider but because we set up the
      same color as the background we can can't tell the difference
-     as a test, hover over the hex code and use another color.
-     */
-      body: Center(
+
+body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -68,7 +74,9 @@ class _ElectronicPageState extends State<ElectronicPage> {
             SizedBox(),
             RichText(
               text: TextSpan(
-                text: 'This item contains Electronics',
+
+                text: 'This item contains Batteries',
+
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
