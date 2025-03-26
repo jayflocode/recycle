@@ -89,6 +89,7 @@ class _ElectronicPageState extends State<ElectronicPage> {
                     fontFamily: mainFont,
                   ),
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
             ElevatedButton(

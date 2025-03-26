@@ -84,7 +84,16 @@ class _BatteryPageState extends State<BatteryPage> {
             SizedBox(
               child: RichText(
                 text: TextSpan(
-                  text: "",
+                  text:
+                      "Lead-acid batteries are one of the most recycled\n\n"
+                      "products. In 2018, 2.9 million were recycled, representing\n\n"
+                      "99 percent of generation. Recycling rates of other battery\n\n"
+                      "types are not as well tracked. Although batteries are\n\n"
+                      "recyclable, most batteries, including lithium-ion, lithium\n\n"
+                      "metal, lead-acid, nickel cadmium, and other rechargeable\n\n"
+                      "batteries, should NOT go in household garbage or recycling\n\n"
+                      "bins. These batteries require special handling and should\n\n"
+                      "be taken to specialty drop-off locations",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
@@ -92,19 +101,21 @@ class _BatteryPageState extends State<BatteryPage> {
                     fontFamily: mainFont,
                   ),
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
+            SizedBox(height: 20),
             GestureDetector(
               onTap: () async {
                 final url = Uri.parse(
-                  "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#pla",
+                  "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#batteries",
                 );
                 if (await canLaunchUrl(url)) {
                   await launchUrl(url);
                 }
               },
               child: const Text(
-                "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#pla",
+                "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#batteries",
                 style: TextStyle(
                   color: Colors.blue,
                   decoration: TextDecoration.underline,
@@ -143,6 +154,7 @@ class _BatteryPageState extends State<BatteryPage> {
                 textAlign: TextAlign.center,
               ),
             ),
+            SizedBox(height: 20),
             ElevatedButton(
               style: const ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll<Color>(

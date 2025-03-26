@@ -70,7 +70,7 @@ class _SamplePageState extends State<SamplePage> {
             SizedBox(),
             RichText(
               text: TextSpan(
-                text: 'This item contains Batteries',
+                text: 'This item contains Sample',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -91,6 +91,7 @@ class _SamplePageState extends State<SamplePage> {
                     fontFamily: mainFont,
                   ),
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
             ElevatedButton(

@@ -19,6 +19,8 @@ void main() {
   runApp(const ScanPage());
 }
 
+void test() {}
+
 //class
 class ScanPage extends StatelessWidget {
   const ScanPage({super.key});
