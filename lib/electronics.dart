@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:recycle/scan.dart';
 
-// attn this page is not finished
-
 final String mainFont = "AppleGothic";
 
 void main() {
-  runApp(const Electronics());
+  runApp(const Electronic());
 }
 
 //class
-class Electronics extends StatelessWidget {
-  const Electronics({super.key});
+class Electronic extends StatelessWidget {
+  const Electronic({super.key});
   //color of background
   static const color = Color(0xFFB6E8C6);
 
@@ -29,21 +27,21 @@ class Electronics extends StatelessWidget {
         fontFamily: mainFont,
       ),
       //homepage text
-      home: const ElectronicsPage(title: 'Electronics'),
+      home: const ElectronicPage(title: 'Electronic'),
     );
   }
 }
 
-class ElectronicsPage extends StatefulWidget {
-  const ElectronicsPage({super.key, required this.title});
+class ElectronicPage extends StatefulWidget {
+  const ElectronicPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<ElectronicsPage> createState() => _ElectronicsPageState();
+  State<ElectronicPage> createState() => _ElectronicPageState();
 }
 
-class _ElectronicsPageState extends State<ElectronicsPage> {
+class _ElectronicPageState extends State<ElectronicPage> {
   /* This is the Area of the Project where you set up the Structure of the
   app.
   */
@@ -52,7 +50,7 @@ class _ElectronicsPageState extends State<ElectronicsPage> {
     return Scaffold(
       /*there is an app bar that acts as a divider but because we set up the
      same color as the background we can can't tell the difference
-     as a test, hover over the hex code and use another color. 
+     as a test, hover over the hex code and use another color.
      */
       body: Center(
         child: Column(
@@ -70,7 +68,7 @@ class _ElectronicsPageState extends State<ElectronicsPage> {
             SizedBox(),
             RichText(
               text: TextSpan(
-                text: 'This item contains Batteries',
+                text: 'This item contains Electronics',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
