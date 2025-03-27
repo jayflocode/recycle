@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recycle/scan.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final String mainFont = "AppleGothic";
 
@@ -99,6 +100,56 @@ class _AluminumPageState extends State<AluminumPage> {
               ),
             ),
             SizedBox(height: 20),
+            GestureDetector(
+              onTap: () async {
+                final url = Uri.parse(
+                  "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#aluminum",
+                );
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
+                }
+              },
+              child: const Text(
+                "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#aluminum",
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            // Additional info text
+            const Text(
+              "For more information on what is recycable: ",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
+            ),
+
+            // Clickable link 2
+            GestureDetector(
+              onTap: () async {
+                final url = Uri.parse(
+                  "https://www.orlando.gov/Trash-Recycling/What-Goes-Where",
+                );
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
+                  LaunchMode mode = LaunchMode.platformDefault;
+                  mode == LaunchMode.inAppBrowserView;
+                }
+              },
+              child: const Text(
+                "www.orlando.gov/Trash-Recycling",
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            SizedBox(height: 100),
             ElevatedButton(
               style: const ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll<Color>(

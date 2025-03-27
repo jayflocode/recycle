@@ -19,6 +19,8 @@ void main() {
   runApp(const ScanPage());
 }
 
+void test() {}
+
 //class
 class ScanPage extends StatelessWidget {
   const ScanPage({super.key});
@@ -347,8 +349,7 @@ Route _switchToGlass() {
 
 Route _switchToElectronics() {
   return PageRouteBuilder(
-    pageBuilder:
-        (context, animation, secondaryAnimation) => const Electronics(),
+    pageBuilder: (context, animation, secondaryAnimation) => const Electronic(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;

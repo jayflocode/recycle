@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recycle/scan.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // attn this page is not finished
 
@@ -83,7 +84,16 @@ class _BatteryPageState extends State<BatteryPage> {
             SizedBox(
               child: RichText(
                 text: TextSpan(
-                  text: "",
+                  text:
+                      "Lead-acid batteries are one of the most recycled\n\n"
+                      "products. In 2018, 2.9 million were recycled, representing\n\n"
+                      "99 percent of generation. Recycling rates of other battery\n\n"
+                      "types are not as well tracked. Although batteries are\n\n"
+                      "recyclable, most batteries, including lithium-ion, lithium\n\n"
+                      "metal, lead-acid, nickel cadmium, and other rechargeable\n\n"
+                      "batteries, should NOT go in household garbage or recycling\n\n"
+                      "bins. These batteries require special handling and should\n\n"
+                      "be taken to specialty drop-off locations",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
@@ -91,8 +101,60 @@ class _BatteryPageState extends State<BatteryPage> {
                     fontFamily: mainFont,
                   ),
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
+            SizedBox(height: 20),
+            GestureDetector(
+              onTap: () async {
+                final url = Uri.parse(
+                  "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#batteries",
+                );
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
+                }
+              },
+              child: const Text(
+                "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#batteries",
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            // Additional info text
+            const Text(
+              "For more information on what is recycable: ",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
+            ),
+
+            // Clickable link 2
+            GestureDetector(
+              onTap: () async {
+                final url = Uri.parse(
+                  "https://www.orlando.gov/Trash-Recycling/What-Goes-Where",
+                );
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
+                  LaunchMode mode = LaunchMode.platformDefault;
+                  mode == LaunchMode.inAppBrowserView;
+                }
+              },
+              child: const Text(
+                "www.orlando.gov/Trash-Recycling",
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            SizedBox(height: 20),
             ElevatedButton(
               style: const ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll<Color>(
