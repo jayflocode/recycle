@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:recycle/scan.dart';
 
+//replace Electronic with Class Type, ex. Electronic w/ Oil, etc
+
 final String mainFont = "AppleGothic";
 
 void main() {
@@ -50,7 +52,7 @@ class _ElectronicPageState extends State<ElectronicPage> {
     return Scaffold(
       /*there is an app bar that acts as a divider but because we set up the
      same color as the background we can can't tell the difference
-     as a test, hover over the hex code and use another color.
+     as a test, hover over the hex code and use another color. 
      */
       body: Center(
         child: Column(
@@ -68,7 +70,7 @@ class _ElectronicPageState extends State<ElectronicPage> {
             SizedBox(),
             RichText(
               text: TextSpan(
-                text: 'This item contains Electronics',
+                text: 'This item contains Electronic',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
