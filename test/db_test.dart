@@ -8,10 +8,17 @@ example codes to try:
 123456789004 plastic
 75023440004  aluminum
 
+note: response is in json format
+  Expected response is based on query:
+  SELECT Material from recycle where ID = "Whatever is Scanned";
+
+  So if 123456789004 is scanned the query will look like:
+  SELECT Material from recycle where ID = "123456789004";
 
 */
 
 void main() {
+  // this will test for upc code for plastic, this will pass
   test('Search Plastic', () async {
     //variable created to store upc
     var barcodeToTest = '123456789004';
@@ -25,6 +32,7 @@ void main() {
     expect(material, "{Material: plastic}");
   });
 
+  // this will test upc code for aluminum, expected to pass
   test('Search Alunimum', () async {
     //variable created to store upc
     var barcodeToTest = '75023440004';
@@ -38,6 +46,7 @@ void main() {
     expect(material, "{Material: aluminum}");
   });
 
+  // this test will test database when sending letters not numbers
   test('Search Alunimum', () async {
     //variable created to store upc
     var barcodeToTest = 'superman';

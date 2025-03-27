@@ -349,7 +349,8 @@ Route _switchToGlass() {
 
 Route _switchToElectronics() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const Electronic(),
+    pageBuilder:
+        (context, animation, secondaryAnimation) => const Electronics(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;
