@@ -71,7 +71,7 @@ class _FoodPageState extends State<FoodPage> {
             SizedBox(),
             RichText(
               text: TextSpan(
-                text: 'This item contains Food',
+                text: 'This item contains Food Material',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -85,12 +85,14 @@ class _FoodPageState extends State<FoodPage> {
               child: RichText(
                 text: TextSpan(
                   text:
-                      "EPA estimates that 63.1 million tons of food waste was\n\n"
-                      "generated in the commercial, institutional, and residential\n\n"
-                      "sectors in 2018. Food cannot be recycled. However, throwing\n\n"
-                      "food into the trash is not the best management option. Food\n\n"
-                      "that ends up in landfills leads to methane emissions which\n\n"
-                      "contribute to climate change.",
+                      "EPA estimates that 63.1 million tons of food waste\n\n"
+                      "was generated in the commercial, institutional, and\n\n"
+                      "residential sectors in 2018. Food cannot be recycled.\n\n"
+                      "However, throwing food into the trash is not the best\n\n"
+                      "management option. Food that ends up in landfills\n\n"
+                      "leads to methane emissions which contribute to climate\n\n"
+                      "change. EPA recommends reducing food waste by buying\n\n"
+                      "only what you need and by eating your leftovers.",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,

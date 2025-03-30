@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:recycle/aluminum.dart';
 import 'package:recycle/batteries.dart';
 import 'package:recycle/electronics.dart';
+import 'package:recycle/food.dart';
 import 'package:recycle/glass.dart';
 import 'package:recycle/hazardous.dart';
 import 'package:recycle/lawn.dart';
@@ -14,6 +15,7 @@ import 'package:recycle/oil.dart';
 import 'dart:convert';
 
 import 'package:recycle/plastic.dart';
+import 'package:recycle/tires.dart';
 
 void main() {
   runApp(const ScanPage());
@@ -140,6 +142,10 @@ class _ScanHomePageState extends State<ScanHomePage> {
       Navigator.of(context).push(_switchToElectronics());
     } else if (material.contains("glass")) {
       Navigator.of(context).push(_switchToGlass());
+    } else if (material.contains("food")) {
+      Navigator.of(context).push(_switchToFood());
+    } else if (material.contains("tires")) {
+      Navigator.of(context).push(_switchToTires());
     }
     // when database has not found the material or does not exist
     else {
@@ -366,6 +372,36 @@ Route _switchToElectronics() {
 Route _switchToNotFound() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => const Notfound(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(position: animation.drive(tween), child: child);
+    },
+  );
+}
+
+Route _switchToTires() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const Tires(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(position: animation.drive(tween), child: child);
+    },
+  );
+}
+
+Route _switchToFood() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const Food(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;

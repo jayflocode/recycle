@@ -71,7 +71,7 @@ class _HazardousPageState extends State<HazardousPage> {
             SizedBox(),
             RichText(
               text: TextSpan(
-                text: 'This item contains Hazardous items',
+                text: 'This item contains Hazardous materials',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -86,11 +86,12 @@ class _HazardousPageState extends State<HazardousPage> {
                 text: TextSpan(
                   text:
                       "Leftover household products that can catch fire, react,\n\n"
-                      "or explode under certain circumstances, or that are corrosive\n\n"
-                      "are considered household hazardous waste (HHW). Although\n\n"
-                      "it depends on your local solid waste agency/recycling\n\n"
-                      "facility, some examples include pesticides, herbicides,\n\n"
-                      "insecticides, paints, solvents, oil filters, and light bulbs.",
+                      "or explode under certain circumstances, or that are\n\n"
+                      "corrosive are considered household hazardous waste\n\n"
+                      "(HHW). Although it depends on your local solid waste\n\n"
+                      "agency/recycling facility, some examples include\n\n"
+                      "pesticides, herbicides, insecticides, paints, solvents,\n\n"
+                      "oil filters, and light bulbs.",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,

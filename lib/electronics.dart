@@ -71,7 +71,7 @@ class _ElectronicsPageState extends State<ElectronicsPage> {
             SizedBox(),
             RichText(
               text: TextSpan(
-                text: 'This item contains Batteries',
+                text: 'This item you scanned contains electronic components',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,

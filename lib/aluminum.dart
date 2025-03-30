@@ -71,7 +71,7 @@ class _AluminumPageState extends State<AluminumPage> {
             SizedBox(),
             RichText(
               text: TextSpan(
-                text: 'This item contains Aluminum',
+                text: 'The item you scanned contains Aluminum',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -97,6 +97,7 @@ class _AluminumPageState extends State<AluminumPage> {
                     fontFamily: mainFont,
                   ),
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
             SizedBox(height: 20),

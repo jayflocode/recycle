@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:recycle/scan.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-//replace Miscellaneous with Class Type, ex. Miscellaneous w/ Oil, etc
+//replace Metal with Class Type, ex. Metal w/ Oil, etc
 
 final String mainFont = "AppleGothic";
 
 void main() {
-  runApp(const Miscellaneous());
+  runApp(const Metal());
 }
 
 //class
-class Miscellaneous extends StatelessWidget {
-  const Miscellaneous({super.key});
+class Metal extends StatelessWidget {
+  const Metal({super.key});
   //color of background
   static const color = Color(0xFFB6E8C6);
 
@@ -30,21 +30,21 @@ class Miscellaneous extends StatelessWidget {
         fontFamily: mainFont,
       ),
       //homepage text
-      home: const MiscellaneousPage(title: 'Miscellaneous'),
+      home: const MetalPage(title: 'Metal'),
     );
   }
 }
 
-class MiscellaneousPage extends StatefulWidget {
-  const MiscellaneousPage({super.key, required this.title});
+class MetalPage extends StatefulWidget {
+  const MetalPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MiscellaneousPage> createState() => _MiscellaneousPageState();
+  State<MetalPage> createState() => _MetalPageState();
 }
 
-class _MiscellaneousPageState extends State<MiscellaneousPage> {
+class _MetalPageState extends State<MetalPage> {
   /* This is the Area of the Project where you set up the Structure of the
   app.
   */
@@ -71,7 +71,7 @@ class _MiscellaneousPageState extends State<MiscellaneousPage> {
             SizedBox(),
             RichText(
               text: TextSpan(
-                text: 'This item contains Miscellaneous items',
+                text: 'The item you scanned contains Metal',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -85,12 +85,13 @@ class _MiscellaneousPageState extends State<MiscellaneousPage> {
               child: RichText(
                 text: TextSpan(
                   text:
-                      "While we provide general guidance below, please\n\n"
-                      "check with your local solid waste agency or recycling\n\n"
-                      "program first.Generally, you should flush the excrement\n\n"
-                      "down the toilet, and then place the diaper in the\n\n"
-                      "trash. Consider using reusable cloth diapers instead\n\n"
-                      "of disposable diapers.",
+                      "In 2018, 19.2 million tons of ferrous metals\n\n"
+                      "(iron and steel) were generated. EPA estimates that\n\n"
+                      "the recycling rate of ferrous metals from durable\n\n"
+                      "goods was 27.8 percent. The same year, 2.5 million\n\n"
+                      "tons of nonferrous metals (not containing iron) were\n\n"
+                      "generated. The recycling rate for nonferrous metals\n\n"
+                      "was approximately 68 percent.",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
@@ -105,14 +106,14 @@ class _MiscellaneousPageState extends State<MiscellaneousPage> {
             GestureDetector(
               onTap: () async {
                 final url = Uri.parse(
-                  "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#miscellaneous",
+                  "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#metal",
                 );
                 if (await canLaunchUrl(url)) {
                   await launchUrl(url);
                 }
               },
               child: const Text(
-                "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#miscellaneous",
+                "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#metal",
                 style: TextStyle(
                   color: Colors.blue,
                   decoration: TextDecoration.underline,

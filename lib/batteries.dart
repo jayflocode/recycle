@@ -71,7 +71,7 @@ class _BatteryPageState extends State<BatteryPage> {
             SizedBox(),
             RichText(
               text: TextSpan(
-                text: 'This item contains Batteries',
+                text: 'The item you scanned contains Batteries',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,

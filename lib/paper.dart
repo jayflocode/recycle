@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:recycle/scan.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-//replace Miscellaneous with Class Type, ex. Miscellaneous w/ Oil, etc
+//replace Paper with Class Type, ex. Paper w/ Oil, etc
 
 final String mainFont = "AppleGothic";
 
 void main() {
-  runApp(const Miscellaneous());
+  runApp(const Paper());
 }
 
 //class
-class Miscellaneous extends StatelessWidget {
-  const Miscellaneous({super.key});
+class Paper extends StatelessWidget {
+  const Paper({super.key});
   //color of background
   static const color = Color(0xFFB6E8C6);
 
@@ -30,21 +30,21 @@ class Miscellaneous extends StatelessWidget {
         fontFamily: mainFont,
       ),
       //homepage text
-      home: const MiscellaneousPage(title: 'Miscellaneous'),
+      home: const PaperPage(title: 'Paper'),
     );
   }
 }
 
-class MiscellaneousPage extends StatefulWidget {
-  const MiscellaneousPage({super.key, required this.title});
+class PaperPage extends StatefulWidget {
+  const PaperPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MiscellaneousPage> createState() => _MiscellaneousPageState();
+  State<PaperPage> createState() => _PaperPageState();
 }
 
-class _MiscellaneousPageState extends State<MiscellaneousPage> {
+class _PaperPageState extends State<PaperPage> {
   /* This is the Area of the Project where you set up the Structure of the
   app.
   */
@@ -71,7 +71,7 @@ class _MiscellaneousPageState extends State<MiscellaneousPage> {
             SizedBox(),
             RichText(
               text: TextSpan(
-                text: 'This item contains Miscellaneous items',
+                text: 'This item contains Paper/Cardboard',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -85,12 +85,15 @@ class _MiscellaneousPageState extends State<MiscellaneousPage> {
               child: RichText(
                 text: TextSpan(
                   text:
-                      "While we provide general guidance below, please\n\n"
-                      "check with your local solid waste agency or recycling\n\n"
-                      "program first.Generally, you should flush the excrement\n\n"
-                      "down the toilet, and then place the diaper in the\n\n"
-                      "trash. Consider using reusable cloth diapers instead\n\n"
-                      "of disposable diapers.",
+                      "Paper makes up 23 percent of municipal solid waste\n\n"
+                      "(trash) generated each year, more than any other\n\n"
+                      "material. Americans recycled about 68 percent of th\n\n"
+                      "paper they used in 2018. This recovered paper is used\n\n"
+                      "to make new paper products, which saves trees and\n\n"
+                      "other natural resources. Most community or office\n\n"
+                      "recycling programs accept paper and paper products.\n\n"
+                      "Check what your community or office program accepts\n\n"
+                      "before you put it in the bin.",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
@@ -105,14 +108,14 @@ class _MiscellaneousPageState extends State<MiscellaneousPage> {
             GestureDetector(
               onTap: () async {
                 final url = Uri.parse(
-                  "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#miscellaneous",
+                  "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#pap",
                 );
                 if (await canLaunchUrl(url)) {
                   await launchUrl(url);
                 }
               },
               child: const Text(
-                "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#miscellaneous",
+                "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#pap",
                 style: TextStyle(
                   color: Colors.blue,
                   decoration: TextDecoration.underline,

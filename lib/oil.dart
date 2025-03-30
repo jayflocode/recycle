@@ -2,82 +2,119 @@ import 'package:flutter/material.dart';
 import 'package:recycle/scan.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-String mainFont = "AppleGothic";
+//replace Oil with Class Type, ex. Oil w/ Oil, etc
+
+final String mainFont = "AppleGothic";
+
 void main() {
   runApp(const Oil());
 }
 
+//class
 class Oil extends StatelessWidget {
   const Oil({super.key});
+  //color of background
+  static const color = Color(0xFFB6E8C6);
 
-  static const color = Color(0xFFB6E8C6); // Background color
-
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Oil Products',
-      theme: ThemeData(scaffoldBackgroundColor: Color(0xFFB6E8C6)),
-      home: const OilPage(title: 'Oil Products'),
+      title: 'no title',
+      theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
+        ),
+        //sets the background color of the scene completely
+        scaffoldBackgroundColor: const Color(0xFFB6E8C6),
+        fontFamily: mainFont,
+      ),
+      //homepage text
+      home: const OilPage(title: 'Oil'),
     );
   }
 }
 
-class OilPage extends StatelessWidget {
-  final String title;
+class OilPage extends StatefulWidget {
   const OilPage({super.key, required this.title});
 
+  final String title;
+
+  @override
+  State<OilPage> createState() => _OilPageState();
+}
+
+class _OilPageState extends State<OilPage> {
+  /* This is the Area of the Project where you set up the Structure of the
+  app.
+  */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
+      /*there is an app bar that acts as a divider but because we set up the
+     same color as the background we can can't tell the difference
+     as a test, hover over the hex code and use another color. 
+     */
+      body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset('assets/oil.png', height: 80),
-
-            const SizedBox(height: 20),
-
-            // Main text
-            Text(
-              "The item you scanned contains oil-based products",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                fontFamily: mainFont,
+            SizedBox(height: 20),
+            SizedBox(
+              width: 75.0,
+              height: 150.0,
+              /*if you are adding a component inside the sized box then
+              you must declare it as a child followed by closing comma etc
+              */
+              child: Image(image: AssetImage('assets/recycling.png')),
+            ),
+            SizedBox(),
+            RichText(
+              text: TextSpan(
+                text: 'The item scanned contains Used Oil',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: null,
+                  fontFamily: mainFont,
+                ),
               ),
             ),
-
-            const SizedBox(height: 20),
-
-            // Description text
-            Text(
-              "Oil-based products, including motor oil, cooking oil, and industrial lubricants, require proper disposal to prevent environmental contamination."
-              " Improper disposal can lead to water pollution, soil degradation, and harm to wildlife."
-              " Many communities offer recycling programs or hazardous waste collection sites for used oil and related products.",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 15,
-                fontFamily: mainFont,
+            SizedBox(height: 50),
+            SizedBox(
+              child: RichText(
+                text: TextSpan(
+                  text:
+                      "Never dump your used motor oil down the drain\n\n"
+                      "the used oil from one oil change can contaminate\n\n"
+                      "one million gallons of fresh water. By recycling\n\n"
+                      "your used oil, you help keep our water supply clean.\n\n"
+                      "Additionally, it takes only one gallon of used oil\n\n"
+                      "to produce 2.5 quarts of new motor oil compared to\n\n"
+                      "42 gallons of crude oil. Many garages and auto-supply\n\n"
+                      "stores that sell motor oil also accept oil for recycling.\n\n",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: null,
+                    fontFamily: mainFont,
+                  ),
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
-
-            const SizedBox(height: 20),
-
-            // Clickable link 1
+            SizedBox(height: 50),
             GestureDetector(
               onTap: () async {
                 final url = Uri.parse(
-                  "https://www.epa.gov/recycle/managing-used-oil",
+                  "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#oil",
                 );
                 if (await canLaunchUrl(url)) {
                   await launchUrl(url);
                 }
               },
               child: const Text(
-                "https://www.epa.gov/recycle/managing-used-oil",
+                "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#oils",
                 style: TextStyle(
                   color: Colors.blue,
                   decoration: TextDecoration.underline,
@@ -90,23 +127,25 @@ class OilPage extends StatelessWidget {
 
             // Additional info text
             const Text(
-              "Find local oil recycling facilities:",
+              "For more information on what is recycable: ",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16),
             ),
-
+            SizedBox(height: 50),
             // Clickable link 2
             GestureDetector(
               onTap: () async {
                 final url = Uri.parse(
-                  "https://earth911.com/recycling-guide/how-to-recycle-motor-oil/",
+                  "https://www.orlando.gov/Trash-Recycling/What-Goes-Where",
                 );
                 if (await canLaunchUrl(url)) {
                   await launchUrl(url);
+                  LaunchMode mode = LaunchMode.platformDefault;
+                  mode == LaunchMode.inAppBrowserView;
                 }
               },
               child: const Text(
-                "www.earth911.com/recycling-guide/how-to-recycle-motor-oil/",
+                "www.orlando.gov/Trash-Recycling",
                 style: TextStyle(
                   color: Colors.blue,
                   decoration: TextDecoration.underline,
@@ -114,9 +153,7 @@ class OilPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-
-            // Button to return to scan page
-            SizedBox(height: 20),
+            SizedBox(height: 50),
             ElevatedButton(
               style: const ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll<Color>(
@@ -135,7 +172,6 @@ class OilPage extends StatelessWidget {
   }
 }
 
-// Route that links the oil page with the scan page
 Route _switchToScan() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => const ScanPage(),

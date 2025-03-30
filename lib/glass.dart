@@ -71,7 +71,7 @@ class _GlassPageState extends State<GlassPage> {
             SizedBox(),
             RichText(
               text: TextSpan(
-                text: 'This item contains Glass',
+                text: 'The item you scanned contains Glass',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -88,9 +88,9 @@ class _GlassPageState extends State<GlassPage> {
                       'Glass, especially glass food and beverage containers,\n\n'
                       'can be recycled over and over again. In the United\n\n'
                       'States in 2018, 12.3 million tons of glass were\n\n'
-                      'generated, 31.3 percent of which was recycled. Making\n\n'
-                      'new glass from recycled glass is typically cheaper than\n\n'
-                      'using raw materials.',
+                      'generated, 31.3 percent of which was recycled.\n\n'
+                      'Making new glass from recycled glass is typically\n\n'
+                      'cheaper than using raw materials.',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
