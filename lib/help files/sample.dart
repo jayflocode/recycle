@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recycle/scan.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 //replace Sample with Class Type, ex. Sample w/ Oil, etc
 
@@ -83,7 +84,9 @@ class _SamplePageState extends State<SamplePage> {
             SizedBox(
               child: RichText(
                 text: TextSpan(
-                  text: "",
+                  text:
+                      "Sample Text\n\n"
+                      "SampleT Text\n\n",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
@@ -94,6 +97,57 @@ class _SamplePageState extends State<SamplePage> {
                 textAlign: TextAlign.center,
               ),
             ),
+            SizedBox(height: 50),
+            GestureDetector(
+              onTap: () async {
+                final url = Uri.parse(
+                  "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#electronics",
+                );
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
+                }
+              },
+              child: const Text(
+                "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#electronics",
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            // Additional info text
+            const Text(
+              "For more information on what is recycable: ",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(height: 50),
+            // Clickable link 2
+            GestureDetector(
+              onTap: () async {
+                final url = Uri.parse(
+                  "https://www.orlando.gov/Trash-Recycling/What-Goes-Where",
+                );
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
+                  LaunchMode mode = LaunchMode.platformDefault;
+                  mode == LaunchMode.inAppBrowserView;
+                }
+              },
+              child: const Text(
+                "www.orlando.gov/Trash-Recycling",
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            SizedBox(height: 50),
             ElevatedButton(
               style: const ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll<Color>(

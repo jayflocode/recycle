@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recycle/scan.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final String mainFont = "AppleGothic";
 
@@ -84,11 +85,12 @@ class _GlassPageState extends State<GlassPage> {
               child: RichText(
                 text: TextSpan(
                   text:
-                      '   In Florida, recycling glass is more '
-                      'important than\n\never before, as pulverized '
-                      'glass can be used for landscaping and construction\n\n'
-                      'and many counties are exploring ways for glass sand\n\n'
-                      'to be used to restore historic beaches and wetlands.',
+                      'Glass, especially glass food and beverage containers,\n\n'
+                      'can be recycled over and over again. In the United\n\n'
+                      'States in 2018, 12.3 million tons of glass were\n\n'
+                      'generated, 31.3 percent of which was recycled. Making\n\n'
+                      'new glass from recycled glass is typically cheaper than\n\n'
+                      'using raw materials.',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
@@ -96,9 +98,60 @@ class _GlassPageState extends State<GlassPage> {
                     fontFamily: mainFont,
                   ),
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 50),
+            GestureDetector(
+              onTap: () async {
+                final url = Uri.parse(
+                  "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#gla",
+                );
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
+                }
+              },
+              child: const Text(
+                "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#gla",
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            // Additional info text
+            const Text(
+              "For more information on what is recycable: ",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(height: 50),
+            // Clickable link 2
+            GestureDetector(
+              onTap: () async {
+                final url = Uri.parse(
+                  "https://www.orlando.gov/Trash-Recycling/What-Goes-Where",
+                );
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
+                  LaunchMode mode = LaunchMode.platformDefault;
+                  mode == LaunchMode.inAppBrowserView;
+                }
+              },
+              child: const Text(
+                "www.orlando.gov/Trash-Recycling",
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            SizedBox(height: 50),
             ElevatedButton(
               style: const ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll<Color>(

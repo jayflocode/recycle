@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:recycle/scan.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-//replace Electronics with Class Type, ex. Electronics w/ Oil, etc
+// attn this page is not finished
 
 final String mainFont = "AppleGothic";
 
@@ -70,7 +71,7 @@ class _ElectronicsPageState extends State<ElectronicsPage> {
             SizedBox(),
             RichText(
               text: TextSpan(
-                text: 'This item contains Electronics',
+                text: 'This item contains Batteries',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -83,7 +84,15 @@ class _ElectronicsPageState extends State<ElectronicsPage> {
             SizedBox(
               child: RichText(
                 text: TextSpan(
-                  text: "",
+                  text:
+                      "EPA estimates that 2.7 million tons of consumer\n\n"
+                      "electronics were generated in 2018. About 38.5\n\n"
+                      "percent of these electronics were recycled.\n\n"
+                      "Electronics cannot be recycled curbside, but\n\n"
+                      "they can be dropped off at specific collection\n\n"
+                      "sites. Manufacturers and retailers offer several\n\n"
+                      "options to donate or recycle electronics, including\n\n"
+                      "cell phones, computers, and televisions.",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
@@ -94,6 +103,57 @@ class _ElectronicsPageState extends State<ElectronicsPage> {
                 textAlign: TextAlign.center,
               ),
             ),
+            SizedBox(height: 20),
+            GestureDetector(
+              onTap: () async {
+                final url = Uri.parse(
+                  "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#electronics",
+                );
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
+                }
+              },
+              child: const Text(
+                "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#electronics",
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            // Additional info text
+            const Text(
+              "For more information on what is recycable: ",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
+            ),
+
+            // Clickable link 2
+            GestureDetector(
+              onTap: () async {
+                final url = Uri.parse(
+                  "https://www.orlando.gov/Trash-Recycling/What-Goes-Where",
+                );
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
+                  LaunchMode mode = LaunchMode.platformDefault;
+                  mode == LaunchMode.inAppBrowserView;
+                }
+              },
+              child: const Text(
+                "www.orlando.gov/Trash-Recycling",
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            SizedBox(height: 20),
             ElevatedButton(
               style: const ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll<Color>(

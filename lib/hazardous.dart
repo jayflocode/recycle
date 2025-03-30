@@ -2,82 +2,117 @@ import 'package:flutter/material.dart';
 import 'package:recycle/scan.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-String mainFont = "AppleGothic";
+//replace Hazardous with Class Type, ex. Hazardous w/ Oil, etc
+
+final String mainFont = "AppleGothic";
+
 void main() {
   runApp(const Hazardous());
 }
 
+//class
 class Hazardous extends StatelessWidget {
   const Hazardous({super.key});
+  //color of background
+  static const color = Color(0xFFB6E8C6);
 
-  static const color = Color(0xFFB6E8C6); // Background color
-
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Hazardous Materials',
-      theme: ThemeData(scaffoldBackgroundColor: Color(0xFFB6E8C6)),
-      home: const HazardousPage(title: 'Hazardous Material'),
+      title: 'no title',
+      theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
+        ),
+        //sets the background color of the scene completely
+        scaffoldBackgroundColor: const Color(0xFFB6E8C6),
+        fontFamily: mainFont,
+      ),
+      //homepage text
+      home: const HazardousPage(title: 'Hazardous'),
     );
   }
 }
 
-class HazardousPage extends StatelessWidget {
-  final String title;
+class HazardousPage extends StatefulWidget {
   const HazardousPage({super.key, required this.title});
 
+  final String title;
+
+  @override
+  State<HazardousPage> createState() => _HazardousPageState();
+}
+
+class _HazardousPageState extends State<HazardousPage> {
+  /* This is the Area of the Project where you set up the Structure of the
+  app.
+  */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
+      /*there is an app bar that acts as a divider but because we set up the
+     same color as the background we can can't tell the difference
+     as a test, hover over the hex code and use another color. 
+     */
+      body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset('assets/hazardous.png', height: 80),
-
-            const SizedBox(height: 20),
-
-            // Main text
-            Text(
-              "The item you scanned is hazardous material",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                fontFamily: mainFont,
+            SizedBox(height: 20),
+            SizedBox(
+              width: 75.0,
+              height: 150.0,
+              /*if you are adding a component inside the sized box then
+              you must declare it as a child followed by closing comma etc
+              */
+              child: Image(image: AssetImage('assets/recycling.png')),
+            ),
+            SizedBox(),
+            RichText(
+              text: TextSpan(
+                text: 'This item contains Hazardous items',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: null,
+                  fontFamily: mainFont,
+                ),
               ),
             ),
-
-            const SizedBox(height: 20),
-
-            // Description text
-            Text(
-              "Leftover household products that can catch fire, react, or explode under certain circumstances,or that are corrosive are considered household hazardous waste (HHW)."
-              "Although it depends on your local solid waste agency/recycling facility, some examples include pesticides, herbicides, insecticides, paints, solvents, oil filters, light bulbs, batteries, unemptied aerosol cans, ammunition, ammonia, antifreeze, and nail polish."
-              "These products require special care when you dispose of them. HHW may be dangerous to people and bad for the environment if they are poured down the drain, dumped on the ground, or thrown out with regular trash.",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 15,
-                fontFamily: mainFont,
+            SizedBox(height: 50),
+            SizedBox(
+              child: RichText(
+                text: TextSpan(
+                  text:
+                      "Leftover household products that can catch fire, react,\n\n"
+                      "or explode under certain circumstances, or that are corrosive\n\n"
+                      "are considered household hazardous waste (HHW). Although\n\n"
+                      "it depends on your local solid waste agency/recycling\n\n"
+                      "facility, some examples include pesticides, herbicides,\n\n"
+                      "insecticides, paints, solvents, oil filters, and light bulbs.",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: null,
+                    fontFamily: mainFont,
+                  ),
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
-
-            const SizedBox(height: 20),
-
-            // Clickable link 1
+            SizedBox(height: 50),
             GestureDetector(
               onTap: () async {
                 final url = Uri.parse(
-                  "https://www.epa.gov/hw/household-hazardous-waste-hhw",
+                  "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#hhw",
                 );
                 if (await canLaunchUrl(url)) {
                   await launchUrl(url);
                 }
               },
               child: const Text(
-                "https://www.epa.gov/hw/household-hazardous-waste-hhw",
+                "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#hhw",
                 style: TextStyle(
                   color: Colors.blue,
                   decoration: TextDecoration.underline,
@@ -90,23 +125,25 @@ class HazardousPage extends StatelessWidget {
 
             // Additional info text
             const Text(
-              "Find local hazardous waste disposal sites:",
+              "For more information on what is recycable: ",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16),
             ),
-
+            SizedBox(height: 50),
             // Clickable link 2
             GestureDetector(
               onTap: () async {
                 final url = Uri.parse(
-                  "https://www.orlando.gov/Trash-Recycling/Household-Hazardous-Waste",
+                  "https://www.orlando.gov/Trash-Recycling/What-Goes-Where",
                 );
                 if (await canLaunchUrl(url)) {
                   await launchUrl(url);
+                  LaunchMode mode = LaunchMode.platformDefault;
+                  mode == LaunchMode.inAppBrowserView;
                 }
               },
               child: const Text(
-                "www.orlando.gov/Trash-Recycling/Household-Hazardous-Waste",
+                "www.orlando.gov/Trash-Recycling",
                 style: TextStyle(
                   color: Colors.blue,
                   decoration: TextDecoration.underline,
@@ -114,9 +151,7 @@ class HazardousPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-
-            // Button to return to scan page
-            SizedBox(height: 20),
+            SizedBox(height: 50),
             ElevatedButton(
               style: const ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll<Color>(
@@ -135,7 +170,6 @@ class HazardousPage extends StatelessWidget {
   }
 }
 
-// Route that links the hazardous page with the scan page
 Route _switchToScan() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => const ScanPage(),

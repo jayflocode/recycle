@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recycle/scan.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 //replace Lawn with Class Type, ex. Lawn w/ Oil, etc
 
@@ -19,7 +20,7 @@ class Lawn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '',
+      title: 'no title',
       theme: ThemeData(
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
@@ -50,6 +51,10 @@ class _LawnPageState extends State<LawnPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /*there is an app bar that acts as a divider but because we set up the
+     same color as the background we can can't tell the difference
+     as a test, hover over the hex code and use another color. 
+     */
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -58,13 +63,15 @@ class _LawnPageState extends State<LawnPage> {
             SizedBox(
               width: 75.0,
               height: 150.0,
-
+              /*if you are adding a component inside the sized box then
+              you must declare it as a child followed by closing comma etc
+              */
               child: Image(image: AssetImage('assets/recycling.png')),
             ),
             SizedBox(),
             RichText(
               text: TextSpan(
-                text: 'The item you scanned contains Lawn Materials',
+                text: 'This item contains Lawn Materials',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -75,17 +82,14 @@ class _LawnPageState extends State<LawnPage> {
             ),
             SizedBox(height: 50),
             SizedBox(
-              width: 350,
               child: RichText(
                 text: TextSpan(
                   text:
-                      '   In 2018, 35.4 million tons of yard'
-                      'trimmings were generated. Lawn materials'
-                      'cannot be recycled, but they can be'
-                      'composted. If you are unable to compost,'
-                      'check with your local community to learn if'
-                      'there is a yard trimming collection service'
-                      'near you.',
+                      "In 2018, about 35.4 million tons of yard trimmings were\n\n"
+                      "generated. Lawn materials cannot be recycled, but they\n\n"
+                      "can be composted. If you are unable to compost, check\n\n"
+                      "with your local community to learn if there is a yard\n\n"
+                      "trimming collection service near you.",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
@@ -93,9 +97,60 @@ class _LawnPageState extends State<LawnPage> {
                     fontFamily: mainFont,
                   ),
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 50),
+            GestureDetector(
+              onTap: () async {
+                final url = Uri.parse(
+                  "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#lawn",
+                );
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
+                }
+              },
+              child: const Text(
+                "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#lawn",
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            // Additional info text
+            const Text(
+              "For more information on what is recycable: ",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(height: 50),
+            // Clickable link 2
+            GestureDetector(
+              onTap: () async {
+                final url = Uri.parse(
+                  "https://www.orlando.gov/Trash-Recycling/What-Goes-Where",
+                );
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
+                  LaunchMode mode = LaunchMode.platformDefault;
+                  mode == LaunchMode.inAppBrowserView;
+                }
+              },
+              child: const Text(
+                "www.orlando.gov/Trash-Recycling",
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            SizedBox(height: 50),
             ElevatedButton(
               style: const ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll<Color>(
