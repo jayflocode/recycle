@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:recycle/scan.dart';
+import 'package:go_router/go_router.dart';
+import 'package:recycle/main_p_routes.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 String mainFont = "AppleGothic";
@@ -10,22 +11,39 @@ void main() {
 class Plastic extends StatelessWidget {
   const Plastic({super.key});
 
-  static const color = Color(0xFFB6E8C6); // Background color
+  static const color = Color(0xFFB6E8C6);
+
+  // Background color
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Plastic Recycling',
-      theme: ThemeData(scaffoldBackgroundColor: Color(0xFFB6E8C6)),
-      home: const MyHomePage(title: 'Plastic'),
+      title: 'no title',
+      theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
+        ),
+        //sets the background color of the scene completely
+        scaffoldBackgroundColor: const Color(0xFFB6E8C6),
+        fontFamily: mainFont,
+        //sets the background color of the scene completely
+      ),
+      //homepage text
+      home: const MyHomePage(title: 'Aluminum'),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   @override
   //This contains the logo of the recycling app
   Widget build(BuildContext context) {
@@ -120,8 +138,7 @@ class MyHomePage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            //This is the button used for going back to the scan page
-            SizedBox(height: 20),
+            SizedBox(height: 50),
             ElevatedButton(
               style: const ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll<Color>(
@@ -130,27 +147,15 @@ class MyHomePage extends StatelessWidget {
               ),
               child: const Text('Return to Scan another Item'),
               onPressed: () {
-                Navigator.of(context).push(_switchToScan());
+                context.push(Routes.scan);
               },
             ),
+            //This is the button used for going back to the scan page
           ],
         ),
       ),
     );
   }
 }
+
 //Route that links the plastic page with the scan page
-Route _switchToScan() {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const ScanPage(),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(0.0, 1.0);
-      const end = Offset.zero;
-      const curve = Curves.ease;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-      return SlideTransition(position: animation.drive(tween), child: child);
-    },
-  );
-}

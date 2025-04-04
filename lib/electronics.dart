@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:recycle/scan.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // attn this page is not finished
@@ -154,35 +153,9 @@ class _ElectronicsPageState extends State<ElectronicsPage> {
               ),
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              style: const ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll<Color>(
-                  Color.fromARGB(255, 169, 240, 191),
-                ),
-              ),
-              child: const Text('Return to Scan another Item'),
-              onPressed: () {
-                Navigator.of(context).push(_switchToScan());
-              },
-            ),
           ],
         ),
       ),
     );
   }
-}
-
-Route _switchToScan() {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const ScanPage(),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(0.0, 1.0);
-      const end = Offset.zero;
-      const curve = Curves.ease;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-      return SlideTransition(position: animation.drive(tween), child: child);
-    },
-  );
 }

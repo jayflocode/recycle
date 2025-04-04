@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recycle/scan.dart';
+import 'package:recycle/main_scan.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 final String mainFont = "AppleGothic";

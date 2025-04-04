@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:recycle/scan.dart';
+import 'package:recycle/main_scan.dart';
 
 //stored upc is located here
 var upcCode = '';
 
 void main() {
-  runApp(const Notfound());
+  runApp(const NotFound());
 }
 
 //class
-class Notfound extends StatelessWidget {
-  const Notfound({super.key});
+class NotFound extends StatelessWidget {
+  const NotFound({super.key});
   //color of background
   static const color = Color(0xFFB6E8C6);
 

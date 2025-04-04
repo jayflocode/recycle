@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:recycle/scan.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // attn this page is not finished
@@ -71,7 +70,7 @@ class _BatteryPageState extends State<BatteryPage> {
             SizedBox(),
             RichText(
               text: TextSpan(
-                text: 'The item you scanned contains Batteries',
+                text: 'This item contains Batteries',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -80,20 +79,19 @@ class _BatteryPageState extends State<BatteryPage> {
                 ),
               ),
             ),
-            SizedBox(height: 50),
+            SizedBox(height: 40),
             SizedBox(
               child: RichText(
                 text: TextSpan(
                   text:
                       "Lead-acid batteries are one of the most recycled\n\n"
-                      "products. In 2018, 2.9 million were recycled, representing\n\n"
-                      "99 percent of generation. Recycling rates of other battery\n\n"
-                      "types are not as well tracked. Although batteries are\n\n"
-                      "recyclable, most batteries, including lithium-ion, lithium\n\n"
-                      "metal, lead-acid, nickel cadmium, and other rechargeable\n\n"
-                      "batteries, should NOT go in household garbage or recycling\n\n"
-                      "bins. These batteries require special handling and should\n\n"
-                      "be taken to specialty drop-off locations",
+                      "products. In 2018, 2.9 million were recycled,\n\n"
+                      "representing 99 percent of generation. Recycling\n\n"
+                      "rates of other battery types are not as well tracked.\n\n"
+                      "Although batteries are recyclable, most batteries,\n\n"
+                      "including lithium-ion, lithium metal, lead-acid, nickel\n\n"
+                      "cadmium, and other rechargeable batteries, should\n\n"
+                      "NOT go in household garbage or recycling",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
@@ -104,7 +102,7 @@ class _BatteryPageState extends State<BatteryPage> {
                 textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 30),
             GestureDetector(
               onTap: () async {
                 final url = Uri.parse(
@@ -154,36 +152,9 @@ class _BatteryPageState extends State<BatteryPage> {
                 textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              style: const ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll<Color>(
-                  Color.fromARGB(255, 169, 240, 191),
-                ),
-              ),
-              child: const Text('Return to Scan another Item'),
-              onPressed: () {
-                Navigator.of(context).push(_switchToScan());
-              },
-            ),
           ],
         ),
       ),
     );
   }
-}
-
-Route _switchToScan() {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const ScanPage(),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(0.0, 1.0);
-      const end = Offset.zero;
-      const curve = Curves.ease;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-      return SlideTransition(position: animation.drive(tween), child: child);
-    },
-  );
 }

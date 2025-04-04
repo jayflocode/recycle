@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:recycle/scan.dart';
+import 'package:go_router/go_router.dart';
+import 'package:recycle/main_p_routes.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 final String mainFont = "AppleGothic";
@@ -51,10 +52,6 @@ class _AluminumPageState extends State<AluminumPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*there is an app bar that acts as a divider but because we set up the
-     same color as the background we can can't tell the difference
-     as a test, hover over the hex code and use another color. 
-     */
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -71,7 +68,7 @@ class _AluminumPageState extends State<AluminumPage> {
             SizedBox(),
             RichText(
               text: TextSpan(
-                text: 'The item you scanned contains Aluminum',
+                text: 'This item contains Aluminum',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -97,7 +94,6 @@ class _AluminumPageState extends State<AluminumPage> {
                     fontFamily: mainFont,
                   ),
                 ),
-                textAlign: TextAlign.center,
               ),
             ),
             SizedBox(height: 20),
@@ -159,7 +155,7 @@ class _AluminumPageState extends State<AluminumPage> {
               ),
               child: const Text('Return to Scan another Item'),
               onPressed: () {
-                Navigator.of(context).push(_switchToScan());
+                context.push(Routes.scan);
               },
             ),
           ],
@@ -167,19 +163,4 @@ class _AluminumPageState extends State<AluminumPage> {
       ),
     );
   }
-}
-
-Route _switchToScan() {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const ScanPage(),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(0.0, 1.0);
-      const end = Offset.zero;
-      const curve = Curves.ease;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-      return SlideTransition(position: animation.drive(tween), child: child);
-    },
-  );
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recycle/scan.dart';
+import 'package:recycle/main_scan.dart';
 
 //stored upc is located here
 
