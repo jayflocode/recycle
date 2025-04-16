@@ -3,15 +3,13 @@ import 'package:go_router/go_router.dart';
 import 'package:recycle/main_p_routes.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+// attn this page is not finished
+
 final String mainFont = "AppleGothic";
 
-void main() {
-  runApp(const Aluminum());
-}
-
 //class
-class Aluminum extends StatelessWidget {
-  const Aluminum({super.key});
+class Battery extends StatelessWidget {
+  const Battery({super.key});
   //color of background
   static const color = Color(0xFFB6E8C6);
 
@@ -27,31 +25,33 @@ class Aluminum extends StatelessWidget {
         //sets the background color of the scene completely
         scaffoldBackgroundColor: const Color(0xFFB6E8C6),
         fontFamily: mainFont,
-        //sets the background color of the scene completely
       ),
       //homepage text
-      home: const AluminumPage(title: 'Aluminum'),
+      home: const BatteryPage(title: 'Battery'),
     );
   }
 }
 
-class AluminumPage extends StatefulWidget {
-  const AluminumPage({super.key, required this.title});
+class BatteryPage extends StatefulWidget {
+  const BatteryPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<AluminumPage> createState() => _AluminumPageState();
+  State<BatteryPage> createState() => _BatteryPageState();
 }
 
-class _AluminumPageState extends State<AluminumPage> {
-  String mainFont = "AppleGothic";
+class _BatteryPageState extends State<BatteryPage> {
   /* This is the Area of the Project where you set up the Structure of the
   app.
   */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /*there is an app bar that acts as a divider but because we set up the
+     same color as the background we can can't tell the difference
+     as a test, hover over the hex code and use another color. 
+     */
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,7 +68,7 @@ class _AluminumPageState extends State<AluminumPage> {
             SizedBox(),
             RichText(
               text: TextSpan(
-                text: 'This item contains Aluminum',
+                text: 'This item contains Batteries',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -77,16 +77,19 @@ class _AluminumPageState extends State<AluminumPage> {
                 ),
               ),
             ),
-            SizedBox(height: 50),
+            SizedBox(height: 40),
             SizedBox(
               child: RichText(
                 text: TextSpan(
                   text:
-                      '   In 2018, 3.9 million of aluminum'
-                      'municipal solid\n\nwaste was generated,'
-                      'The total recycling rate for\n\naluminum items'
-                      'was 34.9 percent. Both aluminum\n\ncans and'
-                      'foil can be recycled.',
+                      "Lead-acid batteries are one of the most recycled\n\n"
+                      "products. In 2018, 2.9 million were recycled,\n\n"
+                      "representing 99 percent of generation. Recycling\n\n"
+                      "rates of other battery types are not as well tracked.\n\n"
+                      "Although batteries are recyclable, most batteries,\n\n"
+                      "including lithium-ion, lithium metal, lead-acid, nickel\n\n"
+                      "cadmium, and other rechargeable batteries, should\n\n"
+                      "NOT go in household garbage or recycling",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
@@ -94,20 +97,21 @@ class _AluminumPageState extends State<AluminumPage> {
                     fontFamily: mainFont,
                   ),
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 30),
             GestureDetector(
               onTap: () async {
                 final url = Uri.parse(
-                  "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#aluminum",
+                  "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#batteries",
                 );
                 if (await canLaunchUrl(url)) {
                   await launchUrl(url);
                 }
               },
               child: const Text(
-                "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#aluminum",
+                "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables#batteries",
                 style: TextStyle(
                   color: Colors.blue,
                   decoration: TextDecoration.underline,
@@ -146,7 +150,6 @@ class _AluminumPageState extends State<AluminumPage> {
                 textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: 100),
             ElevatedButton(
               style: const ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll<Color>(

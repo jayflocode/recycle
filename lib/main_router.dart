@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:recycle/aluminum.dart';
-import 'package:recycle/batteries.dart';
-import 'package:recycle/electronics.dart';
-import 'package:recycle/food.dart';
-import 'package:recycle/glass.dart';
-import 'package:recycle/hazardous.dart';
-import 'package:recycle/help.dart';
-import 'package:recycle/invalid.dart';
-import 'package:recycle/lawn.dart';
+import 'package:recycle/App%20info%20pages/aluminum.dart';
+import 'package:recycle/App%20info%20pages/batteries.dart';
+import 'package:recycle/App%20info%20pages/electronics.dart';
+import 'package:recycle/App%20info%20pages/food.dart';
+import 'package:recycle/App%20info%20pages/glass.dart';
+import 'package:recycle/App%20info%20pages/hazardous.dart';
+import 'package:recycle/App%20info%20pages/help.dart';
+import 'package:recycle/App%20info%20pages/invalid.dart';
+import 'package:recycle/App%20info%20pages/lawn.dart';
+import 'package:recycle/history.dart';
 import 'package:recycle/main_nav.dart';
 import 'package:recycle/main_p_routes.dart';
-import 'package:recycle/metal.dart';
-import 'package:recycle/miscellaneous.dart';
-import 'package:recycle/not_found.dart';
-import 'package:recycle/oil.dart';
-import 'package:recycle/paper.dart';
-import 'package:recycle/plastic.dart';
+import 'package:recycle/App%20info%20pages/metal.dart';
+import 'package:recycle/App%20info%20pages/miscellaneous.dart';
+import 'package:recycle/App%20info%20pages/not_found.dart';
+import 'package:recycle/App%20info%20pages/oil.dart';
+import 'package:recycle/App%20info%20pages/paper.dart';
+import 'package:recycle/App%20info%20pages/plastic.dart';
 import 'package:recycle/main_scan.dart';
 import 'package:recycle/main_splash_page.dart';
-import 'package:recycle/tires.dart';
+import 'package:recycle/App%20info%20pages/tires.dart';
 
 // navigator key for nested browsing
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -124,6 +125,16 @@ final router = GoRouter(
               // help page root
               path: Routes.help,
               builder: (context, state) => const Help(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            // Help page navigation Area
+            GoRoute(
+              // help page root
+              path: Routes.history,
+              builder: (context, state) => HistoryPage(title: 'History'),
             ),
           ],
         ),

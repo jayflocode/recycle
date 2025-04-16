@@ -12,4 +12,5 @@ class Destination {
 const destinations = [
   Destination(label: 'Scan', icon: Icons.camera_rear),
   Destination(label: 'Help', icon: Icons.help),
+  Destination(label: 'History', icon: Icons.history),
 ];

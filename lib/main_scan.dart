@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:http/http.dart' as http;
+import 'package:recycle/history_array.dart';
 import 'package:recycle/main_p_routes.dart';
 
-import 'package:recycle/not_found.dart';
+import 'package:recycle/App%20info%20pages/not_found.dart';
 
 void main() {
   runApp(const ScanPage());
@@ -62,7 +63,8 @@ class _ScanHomePageState extends State<ScanHomePage> {
   */
 
   // search data method is used to check the upc code against database
-  Future searchData(var code) async {
+  searchData(var code) async {
+    var codeWithdash = code;
     // removes dashes from barcode since barcodes are stored without them in DB
     code = code.toString().replaceAll("-", "");
 
@@ -95,11 +97,11 @@ class _ScanHomePageState extends State<ScanHomePage> {
       // if query list is empty it means code is not valid
       if (queryList.isEmpty) {
         debugPrint("list is empty");
-        changePage(code);
+        changePage(code, codeWithdash);
       } else if (queryList.isNotEmpty) {
         code = queryList[0];
         debugPrint("Query: $code");
-        changePage(code);
+        changePage(code, codeWithdash);
       }
     } else {
       debugPrint("Invalid Code: $code");
@@ -108,16 +110,19 @@ class _ScanHomePageState extends State<ScanHomePage> {
     }
   }
 
-  // change page is a method used to switch to the page
-
-  Future changePage(String material) async {
-    //conditional statements after scan to determine material
-
+  changePage(String material, String code) {
+    //conditional statements after scan to determine materia
     if (material.contains("aluminum")) {
+      material = 'Aluminum';
+      HistoryRepository().historyAdd(material, code);
       context.go(Routes.nestedAluminum);
     } else if (material.contains("batteries}")) {
+      material = 'Battery';
+      HistoryRepository().historyAdd(material, code);
       context.go(Routes.nestedBatteries);
     } else if (material.contains("plastic")) {
+      material = 'Plastic';
+      HistoryRepository().historyAdd(material, code);
       context.go(Routes.nestedPlastic);
     } else if (material.contains("lawn")) {
       context.go(Routes.nestedLawn);
@@ -133,6 +138,16 @@ class _ScanHomePageState extends State<ScanHomePage> {
       context.go(Routes.nestedFood);
     } else if (material.contains("tires")) {
       context.go(Routes.nestedTires);
+    } else if (material.contains("paper")) {
+      context.go(Routes.nestedPaper);
+    } else if (material.contains("oil")) {
+      context.go(Routes.nestedOil);
+    } else if (material.contains("metal")) {
+      context.go(Routes.nestedMetal);
+    } else if (material.contains("miscellaneous")) {
+      context.go(Routes.nestedMiscellaneous);
+    } else if (material.contains("paper")) {
+      context.go(Routes.nestedPaper);
     }
     // when database has not found the material or does not exist
     else {
@@ -146,12 +161,7 @@ class _ScanHomePageState extends State<ScanHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFFB6E8C6),
-        title: Text(widget.title),
-
-        //Tutorial implementation
-      ),
+      //Tutorial implementatio
       /*there is an app bar that acts as a divider but because we set up the
      same color as the background we can can't tell the difference
      as a test, hover over the hex code and use another color. 
@@ -160,6 +170,19 @@ class _ScanHomePageState extends State<ScanHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(height: 50),
+            RichText(
+              text: TextSpan(
+                text: 'Scan your Product',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: null,
+                  fontFamily: null,
+                ),
+              ),
+            ),
+
             //padding to create room
             SizedBox(height: 20),
             Text("Scan item's UPC Code or QR Code"),

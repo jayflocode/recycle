@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recycle/help.dart';
+import 'package:recycle/App%20info%20pages/help.dart';
 import 'package:recycle/main_scan.dart';
 
 //replace Navigation with Class Type, ex. Navigation w/ Oil, etc

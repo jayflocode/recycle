@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 //replace Help with Class Type, ex. Help w/ Oil, etc
 
-final String mainFont = "General Sans";
+final String mainFont = "Roboto";
 
 void main() {
   runApp(const Help());
@@ -27,7 +27,6 @@ class Help extends StatelessWidget {
         ),
         //sets the background color of the scene completely
         scaffoldBackgroundColor: const Color(0xFFB6E8C6),
-        textTheme: GoogleFonts.robotoTextTheme(Theme.of(context).textTheme),
       ),
       //homepage text
       home: const HelpPage(title: 'Help'),
@@ -76,7 +75,6 @@ class _HelpPageState extends State<HelpPage> {
                   color: Colors.black,
                   fontSize: 24,
                   fontWeight: null,
-                  fontFamily: mainFont,
                 ),
               ),
             ),
@@ -86,17 +84,17 @@ class _HelpPageState extends State<HelpPage> {
               child: RichText(
                 text: TextSpan(
                   text:
-                      "Thank you for being a valuable part of our\n\n"
+                      '"Thank you for being a valuable part of our\n\n'
                       "community. We strive to make our community\n\n"
                       "a cleaner place, and if you have any questions\n\n"
                       "please use the information below to contact us\n\n"
                       "us, or submit any feedback to make our service\n\n"
-                      "better. Thank you for using our application!",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
+                      'better. Thank you for using our application!"',
+                  style: GoogleFonts.lato(
+                    textStyle: Theme.of(context).textTheme.displayLarge,
+                    fontSize: 18,
                     fontWeight: null,
-                    fontFamily: mainFont,
+                    fontStyle: FontStyle.italic,
                   ),
                 ),
                 textAlign: TextAlign.center,
@@ -107,11 +105,10 @@ class _HelpPageState extends State<HelpPage> {
             RichText(
               text: TextSpan(
                 text: 'Resources',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: mainFont,
+                style: GoogleFonts.lato(
+                  textStyle: Theme.of(context).textTheme.displayLarge,
+                  fontSize: 24,
+                  fontWeight: null,
                 ),
               ),
             ),
@@ -125,7 +122,6 @@ class _HelpPageState extends State<HelpPage> {
                   color: Colors.black,
                   fontSize: 18,
                   fontWeight: null,
-                  fontFamily: mainFont,
                 ),
               ),
             ),
@@ -181,7 +177,6 @@ class _HelpPageState extends State<HelpPage> {
                   color: Colors.black,
                   fontSize: 18,
                   fontWeight: null,
-                  fontFamily: mainFont,
                 ),
               ),
             ),
@@ -197,7 +192,6 @@ class _HelpPageState extends State<HelpPage> {
                         color: Colors.black,
                         fontSize: 14,
                         fontWeight: null,
-                        fontFamily: mainFont,
                       ),
                     ),
                   ),
@@ -235,7 +229,6 @@ class _HelpPageState extends State<HelpPage> {
                         color: Colors.black,
                         fontSize: 14,
                         fontWeight: null,
-                        fontFamily: mainFont,
                       ),
                     ),
                   ),

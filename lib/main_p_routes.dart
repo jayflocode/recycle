@@ -7,6 +7,7 @@ class Routes {
   //navigator bar Root items
   static const String help = '/help'; // start page
   static const String scan = '/scan'; //scan page
+  static const String history = '/history';
 
   // names of subpages
   static const String plastic = 'plastic';
@@ -40,4 +41,5 @@ class Routes {
   static String nestedAluminum = '/scan/aluminum';
   static String nestedPaper = '/scan/paper';
   static String nestedMetal = '/scan/metal';
+  static String nestedMiscellaneous = '/scan/miscellaneous';
 }

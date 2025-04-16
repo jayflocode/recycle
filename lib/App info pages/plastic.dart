@@ -4,9 +4,6 @@ import 'package:recycle/main_p_routes.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 String mainFont = "AppleGothic";
-void main() {
-  runApp(const Plastic());
-}
 
 class Plastic extends StatelessWidget {
   const Plastic({super.key});
