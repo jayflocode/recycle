@@ -1,40 +1,31 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
 
-//replace Sample with Class Type, ex. Sample w/ Oil, etc
+import 'package:flutter/material.dart';
+import 'package:recycle/main_scan.dart';
 
 final String mainFont = "n/a";
-List<String> historyGlobal = [];
-
-//class
 
 class HistoryPage extends StatefulWidget {
-  const HistoryPage({super.key, required this.title});
-
-  final String title;
-  // Changed to List<String> for better type safety
-
-  // print("callback works"); // Removed invalid print statement
+  const HistoryPage({super.key});
 
   @override
   State<HistoryPage> createState() => HistoryPageState();
 }
 
 class HistoryPageState extends State<HistoryPage> {
-  final StreamController<String> _controller = StreamController<String>();
-  //subcription is created to listen to the stream
-  late StreamSubscription<String> _subscription;
+  // page has subscription
+  // page has controller
 
-  // historyTestList is created to store the history of the stream
+  late StreamSubscription<String> _subscription;
 
   @override
   void initState() {
     super.initState();
 
-    _subscription = _controller.stream.listen(
+    _subscription = historyRepositoryMain.historyStteam.listen(
       (data) {
         setState(() {
-          print("it works");
+          print("it works ");
         });
       },
       onError: (error) {
@@ -49,7 +40,6 @@ class HistoryPageState extends State<HistoryPage> {
   @override
   void dispose() {
     _subscription.cancel();
-    _controller.close();
     super.dispose();
   }
 
@@ -91,7 +81,7 @@ class HistoryPageState extends State<HistoryPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:
-                    historyGlobal
+                    historyRepositoryMain.history
                         .map(
                           (e) => Text(
                             e,

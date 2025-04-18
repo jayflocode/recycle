@@ -1,22 +1,34 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 
-class RealTimeDataPage extends StatefulWidget {
-  const RealTimeDataPage({super.key});
+final String mainFont = "n/a";
+List<String> _history = [];
+final StreamController<String> _controller = StreamController<String>();
 
-  @override
-  _RealTimeDataPageState createState() => _RealTimeDataPageState();
+void historyAdd(String material, String code) {
+  if (_controller.isClosed) return;
+  print("adding to controller");
+  _history.add("Material: $material - UPC Code: $code");
+  _controller.add("Material: $material - UPC Code: $code");
 }
 
-class _RealTimeDataPageState extends State<RealTimeDataPage> {
-  // controller is created to manage the stream
+class HistoryPage extends StatefulWidget {
+  const HistoryPage({super.key, required this.title});
 
-  //subcription is created to listen to the stream
+  final String title;
+  // Changed to List<String> for better type safety
+
+  // print("callback works"); // Removed invalid print statement
+
+  @override
+  State<HistoryPage> createState() => HistoryPageState();
+}
+
+class HistoryPageState extends State<HistoryPage> {
   late StreamSubscription<String> _subscription;
 
   // historyTestList is created to store the history of the stream
-  List<String> historyTestList = [];
-  final StreamController<String> _controller = StreamController<String>();
 
   @override
   void initState() {
@@ -44,23 +56,14 @@ class _RealTimeDataPageState extends State<RealTimeDataPage> {
     super.dispose();
   }
 
-  void addToHistory() {
-    String material = "plastic";
-    String upc = "123456789012";
-
-    if (historyTestList.length < 5) {
-      historyTestList.add("Material: $material - UPC Code: $material");
-      _controller.add("Material: $material - UPC Code: $upc");
-    } else {
-      print("closing connection");
-      _controller.close();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Real-Time Data Example')),
+      backgroundColor: const Color(0xFFB6E8C6),
+      /*there is an app bar that acts as a divider but because we set up the
+     same color as the background we can can't tell the difference
+     as a test, hover over the hex code and use another color. 
+     */
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -82,7 +85,7 @@ class _RealTimeDataPageState extends State<RealTimeDataPage> {
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: null,
-                  fontFamily: null,
+                  fontFamily: mainFont,
                 ),
               ),
             ),
@@ -91,7 +94,7 @@ class _RealTimeDataPageState extends State<RealTimeDataPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:
-                    historyTestList
+                    _history // Use the historyTestList from HistoryRepository
                         .map(
                           (e) => Text(
                             e,
@@ -102,12 +105,9 @@ class _RealTimeDataPageState extends State<RealTimeDataPage> {
                         .toList(),
               ),
             ),
-            ElevatedButton(onPressed: addToHistory, child: Text('add Array')),
           ],
         ),
       ),
     );
   }
 }
-
-void main() => runApp(MaterialApp());

@@ -134,7 +134,7 @@ final router = GoRouter(
             GoRoute(
               // help page root
               path: Routes.history,
-              builder: (context, state) => HistoryPage(title: 'History'),
+              builder: (context, state) => HistoryPage(),
             ),
           ],
         ),

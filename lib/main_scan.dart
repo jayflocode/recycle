@@ -6,12 +6,10 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:http/http.dart' as http;
 import 'package:recycle/history_array.dart';
 import 'package:recycle/main_p_routes.dart';
-
 import 'package:recycle/App%20info%20pages/not_found.dart';
 
-void main() {
-  runApp(const ScanPage());
-}
+final historyRepositoryMain =
+    HistoryRepository(); //declaring as global variable
 
 //class
 class ScanPage extends StatelessWidget {
@@ -114,15 +112,15 @@ class _ScanHomePageState extends State<ScanHomePage> {
     //conditional statements after scan to determine materia
     if (material.contains("aluminum")) {
       material = 'Aluminum';
-      HistoryRepository().historyAdd(material, code);
+      historyRepositoryMain.historyAdd(material, code);
       context.go(Routes.nestedAluminum);
     } else if (material.contains("batteries}")) {
       material = 'Battery';
-      HistoryRepository().historyAdd(material, code);
+      historyRepositoryMain.historyAdd(material, code);
       context.go(Routes.nestedBatteries);
     } else if (material.contains("plastic")) {
       material = 'Plastic';
-      HistoryRepository().historyAdd(material, code);
+      historyRepositoryMain.historyAdd(material, code);
       context.go(Routes.nestedPlastic);
     } else if (material.contains("lawn")) {
       context.go(Routes.nestedLawn);
