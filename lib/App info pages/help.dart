@@ -2,48 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-//replace Help with Class Type, ex. Help w/ Oil, etc
-
-final String mainFont = "Roboto";
-
-void main() {
-  runApp(const Help());
-}
-
-//class
-class Help extends StatelessWidget {
-  const Help({super.key});
-  //color of background
-  static const color = Color(0xFFB6E8C6);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'no title',
-      theme: ThemeData(
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
-        ),
-        //sets the background color of the scene completely
-        scaffoldBackgroundColor: const Color(0xFFB6E8C6),
-      ),
-      //homepage text
-      home: const HelpPage(title: 'Help'),
-    );
-  }
-}
-
-class HelpPage extends StatefulWidget {
-  const HelpPage({super.key, required this.title});
+class Help extends StatefulWidget {
+  const Help({super.key, required this.title});
 
   final String title;
 
   @override
-  State<HelpPage> createState() => _HelpPageState();
+  State<Help> createState() => _HelpState();
 }
 
-class _HelpPageState extends State<HelpPage> {
+class _HelpState extends State<Help> {
   /* This is the Area of the Project where you set up the Structure of the
   app.
   */

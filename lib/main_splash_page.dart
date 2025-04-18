@@ -2,36 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:go_router/go_router.dart';
 
-//
-void main() {
-  runApp(const StartPage());
-}
-
-//class
-class StartPage extends StatelessWidget {
-  const StartPage({super.key});
-  static const color = Color(0xFFB6E8C6);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      /*this value appears to only be used in Android
-       learn more by using your ide's info overlay
-       */
-      title: 'Recycling Application',
-      theme: ThemeData(
-        //sets the background color of the scene completely
-        scaffoldBackgroundColor: const Color(0xFFB6E8C6),
-      ),
-      //homepage text
-      home: const MainPage(title: 'City of Orlando'),
-    );
-  }
-}
-
-class MainPage extends StatefulWidget {
-  const MainPage({super.key, required this.title});
+class SplashPage extends StatefulWidget {
+  const SplashPage({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -43,13 +15,12 @@ class MainPage extends StatefulWidget {
   // always marked "final".
 
   final String title;
-  
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<SplashPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<SplashPage> {
   String mainFont = "AppleGothic";
 
   /* This is the Area of the Project where you set up the Structure of the
@@ -62,10 +33,6 @@ class _MainPageState extends State<MainPage> {
      same color as the background we can can't tell the difference
      as a test, hover over the hex code and use another color. 
      */
-      appBar: AppBar(
-        backgroundColor: Color(0xFFB6E8C6),
-        title: Text(widget.title),
-      ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -81,6 +48,7 @@ class _MainPageState extends State<MainPage> {
  
             */
           children: [
+            SizedBox(height: 50),
             Text(
               "Recycling Assistant",
               style: TextStyle(

@@ -8,6 +8,8 @@ void main() {
   runApp(const Main());
 }
 
+String mainFont = "AppleGothic";
+
 //context.go('/details')
 
 //class
@@ -20,8 +22,15 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp.router(
     routerConfig: router,
     debugShowCheckedModeBanner: false,
-    theme: ThemeData.from(
-      colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+    title: 'Recycling Application',
+    theme: ThemeData(
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
+      ),
+      //sets the background color of the scene completely
+      scaffoldBackgroundColor: const Color(0xFFB6E8C6),
+      fontFamily: mainFont,
+      //sets the background color of the scene completely
     ),
   );
 }

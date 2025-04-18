@@ -6,10 +6,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 final String mainFont = "AppleGothic";
 
-void main() {
-  runApp(const Sample());
-}
-
 //class
 class Sample extends StatelessWidget {
   const Sample({super.key});

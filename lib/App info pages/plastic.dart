@@ -5,42 +5,16 @@ import 'package:url_launcher/url_launcher.dart';
 
 String mainFont = "AppleGothic";
 
-class Plastic extends StatelessWidget {
-  const Plastic({super.key});
-
-  static const color = Color(0xFFB6E8C6);
-
-  // Background color
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'no title',
-      theme: ThemeData(
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
-        ),
-        //sets the background color of the scene completely
-        scaffoldBackgroundColor: const Color(0xFFB6E8C6),
-        fontFamily: mainFont,
-        //sets the background color of the scene completely
-      ),
-      //homepage text
-      home: const MyHomePage(title: 'Aluminum'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class PlasticPage extends StatefulWidget {
+  const PlasticPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<PlasticPage> createState() => _PlasticPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _PlasticPageState extends State<PlasticPage> {
   @override
   //This contains the logo of the recycling app
   Widget build(BuildContext context) {

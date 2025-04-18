@@ -7,31 +7,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 final String mainFont = "AppleGothic";
 
-//class
-class Battery extends StatelessWidget {
-  const Battery({super.key});
-  //color of background
-  static const color = Color(0xFFB6E8C6);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'no title',
-      theme: ThemeData(
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
-        ),
-        //sets the background color of the scene completely
-        scaffoldBackgroundColor: const Color(0xFFB6E8C6),
-        fontFamily: mainFont,
-      ),
-      //homepage text
-      home: const BatteryPage(title: 'Battery'),
-    );
-  }
-}
-
 class BatteryPage extends StatefulWidget {
   const BatteryPage({super.key, required this.title});
 

@@ -1,50 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:recycle/main_scan.dart';
+import 'package:go_router/go_router.dart';
+import 'package:recycle/main_p_routes.dart';
 
 //stored upc is located here
 var upcCode = '';
 
-void main() {
-  runApp(const NotFound());
-}
-
-//class
-class NotFound extends StatelessWidget {
-  const NotFound({super.key});
-  //color of background
-  static const color = Color(0xFFB6E8C6);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    String mainFont = "AppleGothic";
-    return MaterialApp(
-      title: 'no title',
-      theme: ThemeData(
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
-        ),
-        //sets the background color of the scene completely
-        scaffoldBackgroundColor: const Color(0xFFB6E8C6),
-        fontFamily: mainFont,
-        //sets the background color of the scene completely
-      ),
-      //homepage text
-      home: const MyHomePage(title: 'Not Found'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class NotFound extends StatefulWidget {
+  const NotFound({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<NotFound> createState() => _NotFoundState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _NotFoundState extends State<NotFound> {
   String mainFont = "AppleGothic";
   @override
   Widget build(BuildContext context) {
@@ -112,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               child: const Text('Return to Scan another Item'),
               onPressed: () {
-                Navigator.of(context).push(_switchToScan());
+                context.push(Routes.scan);
               },
             ),
           ],
@@ -120,19 +90,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-}
-
-Route _switchToScan() {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const ScanPage(),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(0.0, 1.0);
-      const end = Offset.zero;
-      const curve = Curves.ease;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-      return SlideTransition(position: animation.drive(tween), child: child);
-    },
-  );
 }

@@ -1,6 +1,10 @@
 import 'dart:async';
 import 'dart:collection';
 
+// history repository that stores list of items scanned
+// uses a stream controller to notify the UI when a new item is added
+// to the history
+
 class HistoryRepository {
   final List<String> _history = [];
   // change to your type
@@ -16,5 +20,9 @@ class HistoryRepository {
     print("adding to controller");
     _history.add("Material: $material - UPC Code: $code");
     _controller.add("Material: $material - UPC Code: $code");
+  }
+
+  void closeController() {
+    _controller.close();
   }
 }

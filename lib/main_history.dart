@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:recycle/main_scan.dart';
 
-final String mainFont = "n/a";
-
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});
 
@@ -24,15 +22,21 @@ class HistoryPageState extends State<HistoryPage> {
 
     _subscription = historyRepositoryMain.historyStteam.listen(
       (data) {
-        setState(() {
-          print("it works ");
-        });
+        if (historyRepositoryMain.history.length <= 15) {
+          setState(() {
+            debugPrint("List Updated");
+          });
+        } else {
+          debugPrint("List is full");
+          _subscription.cancel();
+          historyRepositoryMain.closeController();
+        }
       },
       onError: (error) {
-        print('Error: $error');
+        debugPrint("it works ");
       },
       onDone: () {
-        print('Stream closed');
+        debugPrint("it works ");
       },
     );
   }
@@ -72,7 +76,6 @@ class HistoryPageState extends State<HistoryPage> {
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: null,
-                  fontFamily: mainFont,
                 ),
               ),
             ),

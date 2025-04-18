@@ -1,39 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:recycle/main_scan.dart';
+import 'package:go_router/go_router.dart';
+import 'package:recycle/main_p_routes.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-//replace Paper with Class Type, ex. Paper w/ Oil, etc
-
-final String mainFont = "AppleGothic";
-
-void main() {
-  runApp(const Paper());
-}
-
-//class
-class Paper extends StatelessWidget {
-  const Paper({super.key});
-  //color of background
-  static const color = Color(0xFFB6E8C6);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'no title',
-      theme: ThemeData(
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
-        ),
-        //sets the background color of the scene completely
-        scaffoldBackgroundColor: const Color(0xFFB6E8C6),
-        fontFamily: mainFont,
-      ),
-      //homepage text
-      home: const PaperPage(title: 'Paper'),
-    );
-  }
-}
 
 class PaperPage extends StatefulWidget {
   const PaperPage({super.key, required this.title});
@@ -76,7 +44,6 @@ class _PaperPageState extends State<PaperPage> {
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: null,
-                  fontFamily: mainFont,
                 ),
               ),
             ),
@@ -98,7 +65,6 @@ class _PaperPageState extends State<PaperPage> {
                     color: Colors.black,
                     fontSize: 15,
                     fontWeight: null,
-                    fontFamily: mainFont,
                   ),
                 ),
                 textAlign: TextAlign.center,
@@ -163,7 +129,7 @@ class _PaperPageState extends State<PaperPage> {
               ),
               child: const Text('Return to Scan another Item'),
               onPressed: () {
-                Navigator.of(context).push(_switchToScan());
+                context.push(Routes.scan);
               },
             ),
           ],
@@ -171,19 +137,4 @@ class _PaperPageState extends State<PaperPage> {
       ),
     );
   }
-}
-
-Route _switchToScan() {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const ScanPage(),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(0.0, 1.0);
-      const end = Offset.zero;
-      const curve = Curves.ease;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-      return SlideTransition(position: animation.drive(tween), child: child);
-    },
-  );
 }

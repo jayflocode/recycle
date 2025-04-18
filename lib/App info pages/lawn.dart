@@ -1,39 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:recycle/main_scan.dart';
+import 'package:go_router/go_router.dart';
+import 'package:recycle/main_p_routes.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 //replace Lawn with Class Type, ex. Lawn w/ Oil, etc
-
-final String mainFont = "AppleGothic";
-
-void main() {
-  runApp(const Lawn());
-}
-
-//class
-class Lawn extends StatelessWidget {
-  const Lawn({super.key});
-  //color of background
-  static const color = Color(0xFFB6E8C6);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'no title',
-      theme: ThemeData(
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
-        ),
-        //sets the background color of the scene completely
-        scaffoldBackgroundColor: const Color(0xFFB6E8C6),
-        fontFamily: mainFont,
-      ),
-      //homepage text
-      home: const LawnPage(title: 'Lawn'),
-    );
-  }
-}
 
 class LawnPage extends StatefulWidget {
   const LawnPage({super.key, required this.title});
@@ -76,7 +46,6 @@ class _LawnPageState extends State<LawnPage> {
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: null,
-                  fontFamily: mainFont,
                 ),
               ),
             ),
@@ -94,7 +63,6 @@ class _LawnPageState extends State<LawnPage> {
                     color: Colors.black,
                     fontSize: 15,
                     fontWeight: null,
-                    fontFamily: mainFont,
                   ),
                 ),
                 textAlign: TextAlign.center,
@@ -159,7 +127,7 @@ class _LawnPageState extends State<LawnPage> {
               ),
               child: const Text('Return to Scan another Item'),
               onPressed: () {
-                Navigator.of(context).push(_switchToScan());
+                context.push(Routes.scan);
               },
             ),
           ],
@@ -167,19 +135,4 @@ class _LawnPageState extends State<LawnPage> {
       ),
     );
   }
-}
-
-Route _switchToScan() {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const ScanPage(),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(0.0, 1.0);
-      const end = Offset.zero;
-      const curve = Curves.ease;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-      return SlideTransition(position: animation.drive(tween), child: child);
-    },
-  );
 }

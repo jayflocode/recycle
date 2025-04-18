@@ -1,49 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:recycle/main_p_routes.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // attn this page is not finished
 
 final String mainFont = "AppleGothic";
 
-void main() {
-  runApp(const Electronics());
-}
-
 //class
-class Electronics extends StatelessWidget {
-  const Electronics({super.key});
-  //color of background
-  static const color = Color(0xFFB6E8C6);
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'no title',
-      theme: ThemeData(
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
-        ),
-        //sets the background color of the scene completely
-        scaffoldBackgroundColor: const Color(0xFFB6E8C6),
-        fontFamily: mainFont,
-      ),
-      //homepage text
-      home: const ElectronicsPage(title: 'Electronics'),
-    );
-  }
-}
-
-class ElectronicsPage extends StatefulWidget {
-  const ElectronicsPage({super.key, required this.title});
+class Electronics extends StatefulWidget {
+  const Electronics({super.key, required this.title});
 
   final String title;
 
   @override
-  State<ElectronicsPage> createState() => _ElectronicsPageState();
+  State<Electronics> createState() => _ElectronicsState();
 }
 
-class _ElectronicsPageState extends State<ElectronicsPage> {
+class _ElectronicsState extends State<Electronics> {
   /* This is the Area of the Project where you set up the Structure of the
   app.
   */
@@ -153,6 +128,17 @@ class _ElectronicsPageState extends State<ElectronicsPage> {
               ),
             ),
             SizedBox(height: 20),
+            ElevatedButton(
+              style: const ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll<Color>(
+                  Color.fromARGB(255, 169, 240, 191),
+                ),
+              ),
+              child: const Text('Return to Scan another Item'),
+              onPressed: () {
+                context.push(Routes.scan);
+              },
+            ),
           ],
         ),
       ),

@@ -2,49 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:recycle/main_scan.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-final String mainFont = "AppleGothic";
-
-void main() {
-  runApp(const Glass());
-}
-
-//class
-class Glass extends StatelessWidget {
-  const Glass({super.key});
-  //color of background
-  static const color = Color(0xFFB6E8C6);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'no title',
-      theme: ThemeData(
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
-        ),
-        //sets the background color of the scene completely
-        scaffoldBackgroundColor: const Color(0xFFB6E8C6),
-        fontFamily: mainFont,
-        //sets the background color of the scene completely
-      ),
-      //homepage text
-      home: const GlassPage(title: 'Glass'),
-    );
-  }
-}
-
-class GlassPage extends StatefulWidget {
-  const GlassPage({super.key, required this.title});
+class Glass extends StatefulWidget {
+  const Glass({super.key, required this.title});
 
   final String title;
 
   @override
-  State<GlassPage> createState() => _GlassPageState();
+  State<Glass> createState() => _GlassState();
 }
 
-class _GlassPageState extends State<GlassPage> {
-  String mainFont = "AppleGothic";
+class _GlassState extends State<Glass> {
   /* This is the Area of the Project where you set up the Structure of the
   app.
   */
@@ -76,7 +43,6 @@ class _GlassPageState extends State<GlassPage> {
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: null,
-                  fontFamily: mainFont,
                 ),
               ),
             ),
@@ -95,7 +61,6 @@ class _GlassPageState extends State<GlassPage> {
                     color: Colors.black,
                     fontSize: 15,
                     fontWeight: null,
-                    fontFamily: mainFont,
                   ),
                 ),
                 textAlign: TextAlign.center,

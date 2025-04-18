@@ -1,50 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:recycle/main_scan.dart';
+import 'package:go_router/go_router.dart';
+import 'package:recycle/main_p_routes.dart';
 
-//stored upc is located here
-
-void main() {
-  runApp(const Invalid());
-}
-
-//class
-class Invalid extends StatelessWidget {
-  const Invalid({super.key});
-  //color of background
-  static const color = Color(0xFFB6E8C6);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    String mainFont = "AppleGothic";
-    return MaterialApp(
-      title: 'no title',
-      theme: ThemeData(
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
-        ),
-        //sets the background color of the scene completely
-        scaffoldBackgroundColor: const Color(0xFFB6E8C6),
-        fontFamily: mainFont,
-        //sets the background color of the scene completely
-      ),
-      //homepage text
-      home: const InvalidHomepage(title: 'Not Found'),
-    );
-  }
-}
-
-class InvalidHomepage extends StatefulWidget {
-  const InvalidHomepage({super.key, required this.title});
+class Invalid extends StatefulWidget {
+  const Invalid({super.key, required this.title});
 
   final String title;
 
   @override
-  State<InvalidHomepage> createState() => _InvalidHomepageState();
+  State<Invalid> createState() => _InvalidState();
 }
 
-class _InvalidHomepageState extends State<InvalidHomepage> {
-  String mainFont = "AppleGothic";
+class _InvalidState extends State<Invalid> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +28,6 @@ class _InvalidHomepageState extends State<InvalidHomepage> {
                     color: Colors.black,
                     fontSize: 18,
                     fontWeight: null,
-                    fontFamily: mainFont,
                   ),
                 ),
                 textAlign: TextAlign.center,
@@ -95,7 +61,6 @@ class _InvalidHomepageState extends State<InvalidHomepage> {
                     color: Colors.black,
                     fontSize: 15,
                     fontWeight: null,
-                    fontFamily: mainFont,
                   ),
                 ),
                 textAlign: TextAlign.center,
@@ -110,7 +75,7 @@ class _InvalidHomepageState extends State<InvalidHomepage> {
               ),
               child: const Text('Return to Scan another Item'),
               onPressed: () {
-                Navigator.of(context).push(_switchToScan());
+                context.push(Routes.scan);
               },
             ),
           ],
@@ -118,19 +83,4 @@ class _InvalidHomepageState extends State<InvalidHomepage> {
       ),
     );
   }
-}
-
-Route _switchToScan() {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const ScanPage(),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(0.0, 1.0);
-      const end = Offset.zero;
-      const curve = Curves.ease;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-      return SlideTransition(position: animation.drive(tween), child: child);
-    },
-  );
 }

@@ -9,7 +9,7 @@ import 'package:recycle/App%20info%20pages/hazardous.dart';
 import 'package:recycle/App%20info%20pages/help.dart';
 import 'package:recycle/App%20info%20pages/invalid.dart';
 import 'package:recycle/App%20info%20pages/lawn.dart';
-import 'package:recycle/history.dart';
+import 'package:recycle/main_history.dart';
 import 'package:recycle/main_nav.dart';
 import 'package:recycle/main_p_routes.dart';
 import 'package:recycle/App%20info%20pages/metal.dart';
@@ -34,7 +34,7 @@ final router = GoRouter(
       //route for start page
       path: Routes.start,
       builder: (BuildContext context, GoRouterState state) {
-        return const StartPage();
+        return const SplashPage(title: 'Splash Page');
       },
     ),
     // Stateful Shell Route for Navigation bar
@@ -55,63 +55,82 @@ final router = GoRouter(
                 //
                 GoRoute(
                   path: Routes.plastic,
-                  builder: (context, state) => const Plastic(),
+                  builder:
+                      (context, state) =>
+                          const PlasticPage(title: 'Plastic Page'),
                 ),
                 GoRoute(
                   path: Routes.aluminum,
-                  builder: (context, state) => const Aluminum(),
+                  builder:
+                      (context, state) =>
+                          const AluminumPage(title: 'Aluminum Page'),
                 ),
                 GoRoute(
                   path: Routes.battery,
-                  builder: (context, state) => const Battery(),
+                  builder:
+                      (context, state) =>
+                          const BatteryPage(title: 'Plastic Page'),
                 ),
                 GoRoute(
                   path: Routes.electronics,
-                  builder: (context, state) => const Electronics(),
+                  builder:
+                      (context, state) =>
+                          const Electronics(title: 'Electronics Page'),
                 ),
                 GoRoute(
                   path: Routes.food,
-                  builder: (context, state) => const Food(),
+                  builder: (context, state) => const Food(title: 'Food Page'),
                 ),
                 GoRoute(
                   path: Routes.glass,
-                  builder: (context, state) => const Glass(),
+                  builder: (context, state) => const Glass(title: 'Glass Page'),
                 ),
                 GoRoute(
                   path: Routes.hazard,
-                  builder: (context, state) => const Hazardous(),
+                  builder:
+                      (context, state) =>
+                          const Hazardous(title: 'Hazardous Page'),
                 ),
                 GoRoute(
                   path: Routes.invalid,
-                  builder: (context, state) => const Invalid(),
+                  builder:
+                      (context, state) => const Invalid(title: 'Invalid Page'),
                 ),
                 GoRoute(
                   path: Routes.lawn,
-                  builder: (context, state) => const Lawn(),
+                  builder:
+                      (context, state) => const LawnPage(title: 'Lawn Page'),
                 ),
                 GoRoute(
                   path: Routes.metal,
-                  builder: (context, state) => const Metal(),
+                  builder:
+                      (context, state) => const MetalPage(title: 'Metal Page'),
                 ),
                 GoRoute(
                   path: Routes.miscellaneous,
-                  builder: (context, state) => const Miscellaneous(),
+                  builder:
+                      (context, state) =>
+                          const MiscellaneousPage(title: 'Miscellaneous Page'),
                 ),
                 GoRoute(
                   path: Routes.notFound,
-                  builder: (context, state) => const NotFound(),
+                  builder:
+                      (context, state) =>
+                          const NotFound(title: 'Not Found Page'),
                 ),
                 GoRoute(
                   path: Routes.oil,
-                  builder: (context, state) => const Oil(),
+                  builder: (context, state) => const OilPage(title: 'Oil Page'),
                 ),
                 GoRoute(
                   path: Routes.paper,
-                  builder: (context, state) => const Paper(),
+                  builder:
+                      (context, state) => const PaperPage(title: 'Paper Page'),
                 ),
                 GoRoute(
                   path: Routes.tires,
-                  builder: (context, state) => const Tires(),
+                  builder:
+                      (context, state) => const TiresPage(title: 'Tires Page'),
                 ),
               ],
             ),
@@ -124,7 +143,7 @@ final router = GoRouter(
             GoRoute(
               // help page root
               path: Routes.help,
-              builder: (context, state) => const Help(),
+              builder: (context, state) => const Help(title: 'Help Page'),
             ),
           ],
         ),

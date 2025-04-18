@@ -4,47 +4,16 @@ import 'package:url_launcher/url_launcher.dart';
 
 //replace Hazardous with Class Type, ex. Hazardous w/ Oil, etc
 
-final String mainFont = "AppleGothic";
-
-void main() {
-  runApp(const Hazardous());
-}
-
-//class
-class Hazardous extends StatelessWidget {
-  const Hazardous({super.key});
-  //color of background
-  static const color = Color(0xFFB6E8C6);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'no title',
-      theme: ThemeData(
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
-        ),
-        //sets the background color of the scene completely
-        scaffoldBackgroundColor: const Color(0xFFB6E8C6),
-        fontFamily: mainFont,
-      ),
-      //homepage text
-      home: const HazardousPage(title: 'Hazardous'),
-    );
-  }
-}
-
-class HazardousPage extends StatefulWidget {
-  const HazardousPage({super.key, required this.title});
+class Hazardous extends StatefulWidget {
+  const Hazardous({super.key, required this.title});
 
   final String title;
 
   @override
-  State<HazardousPage> createState() => _HazardousPageState();
+  State<Hazardous> createState() => _HazardousState();
 }
 
-class _HazardousPageState extends State<HazardousPage> {
+class _HazardousState extends State<Hazardous> {
   /* This is the Area of the Project where you set up the Structure of the
   app.
   */
@@ -76,7 +45,6 @@ class _HazardousPageState extends State<HazardousPage> {
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: null,
-                  fontFamily: mainFont,
                 ),
               ),
             ),
@@ -96,7 +64,6 @@ class _HazardousPageState extends State<HazardousPage> {
                     color: Colors.black,
                     fontSize: 15,
                     fontWeight: null,
-                    fontFamily: mainFont,
                   ),
                 ),
                 textAlign: TextAlign.center,

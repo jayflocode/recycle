@@ -4,47 +4,16 @@ import 'package:url_launcher/url_launcher.dart';
 
 //replace Sample with Class Type, ex. Sample w/ Oil, etc
 
-final String mainFont = "AppleGothic";
-
-void main() {
-  runApp(const Food());
-}
-
-//class
-class Food extends StatelessWidget {
-  const Food({super.key});
-  //color of background
-  static const color = Color(0xFFB6E8C6);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'no title',
-      theme: ThemeData(
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
-        ),
-        //sets the background color of the scene completely
-        scaffoldBackgroundColor: const Color(0xFFB6E8C6),
-        fontFamily: mainFont,
-      ),
-      //homepage text
-      home: const FoodPage(title: 'Food'),
-    );
-  }
-}
-
-class FoodPage extends StatefulWidget {
-  const FoodPage({super.key, required this.title});
+class Food extends StatefulWidget {
+  const Food({super.key, required this.title});
 
   final String title;
 
   @override
-  State<FoodPage> createState() => _FoodPageState();
+  State<Food> createState() => _FoodState();
 }
 
-class _FoodPageState extends State<FoodPage> {
+class _FoodState extends State<Food> {
   /* This is the Area of the Project where you set up the Structure of the
   app.
   */
@@ -76,7 +45,6 @@ class _FoodPageState extends State<FoodPage> {
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: null,
-                  fontFamily: mainFont,
                 ),
               ),
             ),
@@ -97,7 +65,6 @@ class _FoodPageState extends State<FoodPage> {
                     color: Colors.black,
                     fontSize: 15,
                     fontWeight: null,
-                    fontFamily: mainFont,
                   ),
                 ),
                 textAlign: TextAlign.center,
