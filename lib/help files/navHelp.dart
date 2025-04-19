@@ -48,7 +48,7 @@ class NavigationPage extends StatefulWidget {
 class _NavigationPageState extends State<NavigationPage> {
   int currentPageIndex = 0;
 
-  final List<Widget> _children = [ScanPage(), Help(title: '')];
+  final List<Widget> _children = [ScanHomePage(title: ''), Help(title: '')];
 
   void onTabTapped(int index) {
     setState(() {

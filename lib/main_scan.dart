@@ -11,26 +11,6 @@ import 'package:recycle/App%20info%20pages/not_found.dart';
 final historyRepositoryMain =
     HistoryRepository(); //declaring as global variable
 
-//class
-class ScanPage extends StatelessWidget {
-  const ScanPage({super.key});
-  static const color = Color(0xFFB6E8C6);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Recycling Application',
-      theme: ThemeData(
-        //sets the background color of the scene completely
-        scaffoldBackgroundColor: const Color(0xFFB6E8C6),
-      ),
-      //homepage text
-      home: const ScanHomePage(title: 'Scan your Product'),
-    );
-  }
-}
-
 class ScanHomePage extends StatefulWidget {
   const ScanHomePage({super.key, required this.title});
 

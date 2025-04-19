@@ -4,11 +4,11 @@ import 'package:recycle/main_scan.dart';
 void main() {
   testWidgets('Scan Method Tests for Scan Widget', (tester) async {
     // Create the widget by telling the tester to build it.
-    await tester.pumpWidget(const ScanPage());
+    await tester.pumpWidget(const ScanHomePage(title: ''));
   });
 
   testWidgets('Scan Method Tests for Scan Widget', (tester) async {
     // Create the widget by telling the tester to build it.
-    await tester.pumpWidget(const ScanPage());
+    await tester.pumpWidget(const ScanHomePage(title: ''));
   });
 }

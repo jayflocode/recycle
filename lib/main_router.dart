@@ -50,7 +50,8 @@ final router = GoRouter(
             GoRoute(
               //scan page Root
               path: Routes.scan,
-              builder: (context, state) => const ScanPage(),
+              builder:
+                  (context, state) => const ScanHomePage(title: 'Scan Page'),
               routes: [
                 //
                 GoRoute(
@@ -143,7 +144,8 @@ final router = GoRouter(
             GoRoute(
               // help page root
               path: Routes.help,
-              builder: (context, state) => const Help(title: 'Help Page'),
+              builder:
+                  (context, state) => const HistoryPage(title: 'History Page'),
             ),
           ],
         ),
@@ -153,7 +155,7 @@ final router = GoRouter(
             GoRoute(
               // help page root
               path: Routes.history,
-              builder: (context, state) => HistoryPage(),
+              builder: (context, state) => Help(title: 'Help Page'),
             ),
           ],
         ),

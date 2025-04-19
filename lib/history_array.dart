@@ -23,6 +23,26 @@ class HistoryRepository {
   }
 
   void closeController() {
+    if (_controller.isClosed) return;
+    print("closing controller");
+    _controller.addError("Stream closed");
     _controller.close();
+  }
+
+  void pauseController() {
+    if (_controller.isPaused) return;
+    print("pausing controller");
+    _controller.onPause;
+  }
+
+  void resumeController() {
+    if (_controller.isPaused) return;
+    print("resuming controller");
+    _controller.onResume;
+  }
+
+  void clearHistory() {
+    _history.clear();
+    _controller.add("History cleared");
   }
 }

@@ -54,7 +54,7 @@ class _AluminumPageState extends State<AluminumPage> {
               child: RichText(
                 text: TextSpan(
                   text:
-                      '   In 2018, 3.9 million of aluminum'
+                      'In 2018, 3.9 million of aluminum'
                       'municipal solid\n\nwaste was generated,'
                       'The total recycling rate for\n\naluminum items'
                       'was 34.9 percent. Both aluminum\n\ncans and'
@@ -66,6 +66,7 @@ class _AluminumPageState extends State<AluminumPage> {
                     fontFamily: mainFont,
                   ),
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
             SizedBox(height: 20),
