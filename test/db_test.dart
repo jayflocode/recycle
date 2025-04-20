@@ -47,16 +47,38 @@ void main() {
   });
 
   // this test will test database when sending letters not numbers
-  test('Search Alunimum', () async {
-    //variable created to store upc
+  test('Search Invalid Characters', () async {
     var barcodeToTest = 'superman';
 
     var material = await searchData(barcodeToTest);
 
-    print("Result from final: $material");
+    print("Result from invalid char test: $material");
 
-    // replace only portion after Material:
-    //
-    expect(material, "{Material: aluminum}");
+    expect(material, equals("{Material: error}"));
+  });
+
+  // Test a barcode that doesn't exist in the DB
+  test('Search Nonexistent Barcode', () async {
+    var barcodeToTest = '999999999999';
+
+    var material = await searchData(barcodeToTest);
+
+    print("Result from nonexistent test: $material");
+
+    expect(material, equals("{Material: unknown}"));
+  });
+
+  // Test an empty string
+  test('Search Blank Input', () async {
+    var barcodeToTest = '';
+
+    var material = await searchData(barcodeToTest);
+
+    print("Result from blank input test: $material");
+
+    expect(
+      material,
+      isNot(contains("plastic")),
+    ); // Just checking it's not a false positive
   });
 }
