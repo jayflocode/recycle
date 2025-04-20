@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:recycle/main_scan.dart';
 
 //replace Sample with Class Type, ex. Sample w/ Oil, etc
 void main() {

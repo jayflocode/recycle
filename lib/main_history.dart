@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:recycle/help%20files/navigation.dart';
 import 'package:recycle/main_scan.dart';
 
@@ -53,53 +53,54 @@ class HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFB6E8C6),
+      /*there is an app bar that acts as a divider but because we set up the
+     same color as the background we can can't tell the difference
+     as a test, hover over the hex code and use another color. 
+     */
       body: Center(
-        child: SizedBox(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(height: 20),
-              SizedBox(
-                width: 75.0,
-                height: 150.0,
-                child: Image(image: AssetImage('assets/recycling.png')),
-              ),
-              RichText(
-                text: TextSpan(
-                  text: 'Previous Scan History',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: null,
-                  ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: 20),
+            SizedBox(
+              width: 75.0,
+              height: 150.0,
+              /*if you are adding a component inside the sized box then
+              you must declare it as a child followed by closing comma etc
+              */
+              child: Image(image: AssetImage('assets/recycling.png')),
+            ),
+            SizedBox(),
+            RichText(
+              text: TextSpan(
+                text: 'Previous Scan History',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: null,
+                  fontFamily: mainFont,
                 ),
               ),
-              SizedBox(height: 50),
-              Container(
-                width: 400,
-                height: 560,
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 162, 235, 185),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(height: 20),
-                    ...historyRepositoryMain.history.map(
-                      (e) => Text(
-                        e,
-                        style: GoogleFonts.vollkorn(
-                          textStyle: Theme.of(context).textTheme.displayLarge,
-                          fontSize: 15,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                  ],
-                ),
+            ),
+            SizedBox(height: 50),
+            SizedBox(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children:
+                    historyRepositoryMain
+                        .history // Use the historyTestList from HistoryRepository
+                        .map(
+                          (e) => Text(
+                            e,
+                            style: TextStyle(fontWeight: null, fontSize: 15),
+                            textAlign: TextAlign.right,
+                          ),
+                        )
+                        .toList(),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

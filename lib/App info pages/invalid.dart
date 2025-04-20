@@ -48,7 +48,6 @@ class _InvalidState extends State<Invalid> {
             ),
             SizedBox(height: 50),
             SizedBox(
-              width: 320,
               child: RichText(
                 text: TextSpan(
                   text:

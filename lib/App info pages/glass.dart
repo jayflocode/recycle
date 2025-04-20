@@ -67,7 +67,7 @@ class _GlassState extends State<Glass> {
                 textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: 50),
+            SizedBox(height: 20),
             GestureDetector(
               onTap: () async {
                 final url = Uri.parse(
@@ -87,7 +87,7 @@ class _GlassState extends State<Glass> {
               ),
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
 
             // Additional info text
             const Text(
@@ -95,12 +95,12 @@ class _GlassState extends State<Glass> {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 50),
+            SizedBox(height: 20),
             // Clickable link 2
             GestureDetector(
               onTap: () async {
                 final url = Uri.parse(
-                  "https://www.orlando.gov/Trash-Recycling/What-Goes-Where",
+                  "https://recycling.x10.mx/pages/info-pages/glass.html",
                 );
                 if (await canLaunchUrl(url)) {
                   await launchUrl(url);
@@ -109,7 +109,7 @@ class _GlassState extends State<Glass> {
                 }
               },
               child: const Text(
-                "www.orlando.gov/Trash-Recycling",
+                "https://recycling.x10.mx/pages/info-pages/glass.html",
                 style: TextStyle(
                   color: Colors.blue,
                   decoration: TextDecoration.underline,

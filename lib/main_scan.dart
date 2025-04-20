@@ -111,6 +111,8 @@ class _ScanHomePageState extends State<ScanHomePage> {
     } else if (material.contains("electronics")) {
       context.go(Routes.nestedElectronics);
     } else if (material.contains("glass")) {
+      material = 'Glass';
+      historyRepositoryMain.historyAdd(material, code);
       context.go(Routes.nestedGlass);
     } else if (material.contains("food")) {
       context.go(Routes.nestedFood);
@@ -129,8 +131,7 @@ class _ScanHomePageState extends State<ScanHomePage> {
     }
     // when database has not found the material or does not exist
     else {
-      upcCode = material;
-      debugPrint("Upc Code: $material");
+      upcCode = code;
 
       context.go(Routes.nestedNotFound);
     }

@@ -102,7 +102,7 @@ class _AluminumPageState extends State<AluminumPage> {
             GestureDetector(
               onTap: () async {
                 final url = Uri.parse(
-                  "https://www.orlando.gov/Trash-Recycling/What-Goes-Where",
+                  "https://recycling.x10.mx/pages/info-pages/aluminum.html",
                 );
                 if (await canLaunchUrl(url)) {
                   await launchUrl(url);
@@ -111,7 +111,7 @@ class _AluminumPageState extends State<AluminumPage> {
                 }
               },
               child: const Text(
-                "www.orlando.gov/Trash-Recycling",
+                "https://recycling.x10.mx/pages/info-pages/aluminum.html",
                 style: TextStyle(
                   color: Colors.blue,
                   decoration: TextDecoration.underline,

@@ -92,7 +92,7 @@ class _PlasticPageState extends State<PlasticPage> {
             GestureDetector(
               onTap: () async {
                 final url = Uri.parse(
-                  "https://www.orlando.gov/Trash-Recycling/What-Goes-Where",
+                  "https://recycling.x10.mx/pages/info-pages/plastic.html",
                 );
                 if (await canLaunchUrl(url)) {
                   await launchUrl(url);
@@ -101,7 +101,7 @@ class _PlasticPageState extends State<PlasticPage> {
                 }
               },
               child: const Text(
-                "www.orlando.gov/Trash-Recycling",
+                "https://recycling.x10.mx/pages/info-pages/plastic.html",
                 style: TextStyle(
                   color: Colors.blue,
                   decoration: TextDecoration.underline,

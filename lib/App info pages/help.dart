@@ -98,7 +98,7 @@ class _HelpState extends State<Help> {
             GestureDetector(
               onTap: () async {
                 final url = Uri.parse(
-                  "https://www.orlando.gov/Trash-Recycling/What-Goes-Where",
+                  "https://recycling.x10.mx/pages/contact.html",
                 );
                 if (await canLaunchUrl(url)) {
                   await launchUrl(url);
@@ -107,7 +107,7 @@ class _HelpState extends State<Help> {
                 }
               },
               child: const Text(
-                "Feedback Form",
+                "App Feedback Form",
                 style: TextStyle(
                   color: Colors.blue,
                   decoration: TextDecoration.none,
@@ -120,7 +120,7 @@ class _HelpState extends State<Help> {
             GestureDetector(
               onTap: () async {
                 final url = Uri.parse(
-                  "https://www.orlando.gov/Trash-Recycling/What-Goes-Where",
+                  "https://recycling.x10.mx/pages/contact.html",
                 );
                 if (await canLaunchUrl(url)) {
                   await launchUrl(url);
