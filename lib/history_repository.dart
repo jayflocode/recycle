@@ -7,10 +7,9 @@ import 'dart:collection';
 
 class HistoryRepository {
   final List<String> _history = [];
-  // change to your type
-  UnmodifiableListView<String> get history => UnmodifiableListView(
-    _history,
-  ); // just to restrict adding items only from this class.
+
+  UnmodifiableListView<String> get history => UnmodifiableListView(_history);
+
   final StreamController<String> _controller =
       StreamController<String>.broadcast();
   Stream<String> get historyStteam => _controller.stream;

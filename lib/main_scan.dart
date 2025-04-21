@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:http/http.dart' as http;
-import 'package:recycle/history_array.dart';
+import 'package:recycle/history_repository.dart';
 import 'package:recycle/main_p_routes.dart';
 import 'package:recycle/App%20info%20pages/not_found.dart';
 
+// repository to store history of scanned items
 final historyRepositoryMain =
     HistoryRepository(); //declaring as global variable
 
@@ -21,6 +22,7 @@ class ScanHomePage extends StatefulWidget {
 }
 
 class _ScanHomePageState extends State<ScanHomePage> {
+  // controller required by the mobile scanner to initiate and store scanning results
   late MobileScannerController _scannerController;
 
   @override
@@ -36,9 +38,6 @@ class _ScanHomePageState extends State<ScanHomePage> {
     _scannerController.dispose();
     super.dispose();
   }
-  /* This is the Area of the Project where you set up the Structure of the
-  app.
-  */
 
   // search data method is used to check the upc code against database
   searchData(var code) async {
@@ -54,7 +53,7 @@ class _ScanHomePageState extends State<ScanHomePage> {
     */
       var urlWeb = Uri.parse('https://recycling.x10.mx/get.php');
 
-      //php file storing get command
+      // passing code variable to body of the request
 
       final response = await http.post(
         urlWeb,
@@ -62,12 +61,13 @@ class _ScanHomePageState extends State<ScanHomePage> {
       ); //awaits response
 
       // json body response which is stored as "dynamic" data type
-      //FYI: Source has info on data types https://treeindev.net/article/dart-data-types
-      //dynamic is used for json type data, other reasons var is desired
+
       dynamic stringList = json.decode(response.body);
 
       // a list is created to access internal methods from List class
       List<String> queryList = [];
+
+      // adding response to the first element of list
 
       for (int i = 0; i < stringList.length; i++) {
         queryList.add(stringList[i].toString());
@@ -76,17 +76,21 @@ class _ScanHomePageState extends State<ScanHomePage> {
       if (queryList.isEmpty) {
         debugPrint("list is empty");
         changePage(code, codeWithdash);
+        //if the response is not empty storing results
       } else if (queryList.isNotEmpty) {
         code = queryList[0];
         debugPrint("Query: $code");
         changePage(code, codeWithdash);
       }
     } else {
+      // if the code is not valid
       debugPrint("Invalid Code: $code");
       // switch to different page later
       context.go(Routes.nestedInvalid);
     }
   }
+
+  // method used to route to different pages
 
   changePage(String material, String code) {
     //conditional statements after scan to determine materia
@@ -103,30 +107,52 @@ class _ScanHomePageState extends State<ScanHomePage> {
       historyRepositoryMain.historyAdd(material, code);
       context.go(Routes.nestedPlastic);
     } else if (material.contains("lawn")) {
+      material = 'lawn';
+      historyRepositoryMain.historyAdd(material, code);
       context.go(Routes.nestedLawn);
     } else if (material.contains("hazardous")) {
+      material = 'hazardous';
+      historyRepositoryMain.historyAdd(material, code);
       context.go(Routes.nestedHazard);
     } else if (material.contains("oil")) {
+      material = 'oil';
+      historyRepositoryMain.historyAdd(material, code);
       context.go(Routes.nestedOil);
     } else if (material.contains("electronics")) {
+      material = 'electronics';
+      historyRepositoryMain.historyAdd(material, code);
       context.go(Routes.nestedElectronics);
     } else if (material.contains("glass")) {
       material = 'Glass';
       historyRepositoryMain.historyAdd(material, code);
       context.go(Routes.nestedGlass);
     } else if (material.contains("food")) {
+      material = 'food';
+      historyRepositoryMain.historyAdd(material, code);
       context.go(Routes.nestedFood);
     } else if (material.contains("tires")) {
+      material = 'tires';
+      historyRepositoryMain.historyAdd(material, code);
       context.go(Routes.nestedTires);
     } else if (material.contains("paper")) {
+      material = 'paper';
+      historyRepositoryMain.historyAdd(material, code);
       context.go(Routes.nestedPaper);
     } else if (material.contains("oil")) {
+      material = 'oil';
+      historyRepositoryMain.historyAdd(material, code);
       context.go(Routes.nestedOil);
     } else if (material.contains("metal")) {
+      material = 'metal';
+      historyRepositoryMain.historyAdd(material, code);
       context.go(Routes.nestedMetal);
     } else if (material.contains("miscellaneous")) {
+      material = 'miscellaneous';
+      historyRepositoryMain.historyAdd(material, code);
       context.go(Routes.nestedMiscellaneous);
     } else if (material.contains("paper")) {
+      material = 'paper';
+      historyRepositoryMain.historyAdd(material, code);
       context.go(Routes.nestedPaper);
     }
     // when database has not found the material or does not exist

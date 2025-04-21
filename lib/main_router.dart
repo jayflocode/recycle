@@ -22,6 +22,8 @@ import 'package:recycle/main_scan.dart';
 import 'package:recycle/main_splash_page.dart';
 import 'package:recycle/App%20info%20pages/tires.dart';
 
+//router contains the routes for the app
+
 // navigator key for nested browsing
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 

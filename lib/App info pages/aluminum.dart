@@ -18,9 +18,7 @@ class AluminumPage extends StatefulWidget {
 
 class _AluminumPageState extends State<AluminumPage> {
   String mainFont = "AppleGothic";
-  /* This is the Area of the Project where you set up the Structure of the
-  app.
-  */
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,9 +30,6 @@ class _AluminumPageState extends State<AluminumPage> {
             SizedBox(
               width: 75.0,
               height: 150.0,
-              /*if you are adding a component inside the sized box then
-              you must declare it as a child followed by closing comma etc
-              */
               child: Image(image: AssetImage('assets/recycling.png')),
             ),
             SizedBox(),

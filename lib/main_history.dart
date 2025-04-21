@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:recycle/help%20files/navigation.dart';
 import 'package:recycle/main_scan.dart';
 
+// page where history items are located
+
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key, required String title});
 
@@ -13,9 +15,6 @@ class HistoryPage extends StatefulWidget {
 }
 
 class HistoryPageState extends State<HistoryPage> {
-  // page has subscription
-  // page has controller
-
   late StreamSubscription<String> _subscription;
 
   @override

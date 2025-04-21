@@ -15,16 +15,9 @@ class Food extends StatefulWidget {
 }
 
 class _FoodState extends State<Food> {
-  /* This is the Area of the Project where you set up the Structure of the
-  app.
-  */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*there is an app bar that acts as a divider but because we set up the
-     same color as the background we can can't tell the difference
-     as a test, hover over the hex code and use another color. 
-     */
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -33,9 +26,7 @@ class _FoodState extends State<Food> {
             SizedBox(
               width: 75.0,
               height: 150.0,
-              /*if you are adding a component inside the sized box then
-              you must declare it as a child followed by closing comma etc
-              */
+
               child: Image(image: AssetImage('assets/recycling.png')),
             ),
             SizedBox(),

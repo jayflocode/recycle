@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:recycle/main_p_dest.dart';
 
+//this is the main navigation bar for the app
+
 class LayoutScaffold extends StatelessWidget {
   const LayoutScaffold({required this.navigationShell, super.key});
 
@@ -9,6 +11,7 @@ class LayoutScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+    //navigation shell is used to store states of the app
     body: navigationShell,
     bottomNavigationBar: NavigationBar(
       selectedIndex: navigationShell.currentIndex,
